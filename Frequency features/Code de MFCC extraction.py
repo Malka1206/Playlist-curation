@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import sawtooth
 import librosa.display
 from scipy.fftpack import dct
+import librosa
 
 def signal_sinusoidal(frequence=440, duree=1.0, echantillon=10000):
     t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
@@ -23,6 +24,11 @@ def bruit_blanc(duree=1.0, echantillon=16000):
     t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
     signal = np.random.normal(0, 1, len(t))
     return t, signal
+
+
+def charger_audio(chemin_fichier, sr=16000):
+    signal, _ = librosa.load(chemin_fichier, sr=sr)
+    return signal
 
 # Test et affichage
 """signaux = {
@@ -95,10 +101,13 @@ def MFCC(signal, n_fft, hop_size, n_mels, n_mfcc):
 
     # Application de la DCT pour obtenir les MFCCs
     mfccs = dct(log_mel_spectrum, type=2, axis=0, norm='ortho')[:n_mfcc]
+    print (mfccs)
     return mfccs
 
 # Test du MFCC 
-signal=bruit_blanc()[1]
+chemin_fichier = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Frequency features/musique.wav"
+
+signal = charger_audio(chemin_fichier)
 
 n_fft = 2048  # Taille de la FFT
 hop_size = 512  # Décalage entre fenêtres
