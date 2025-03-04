@@ -22,7 +22,7 @@ def compute_beat_histogram(audio_file):
     plt.title(f'Beat Histogram - Tempo estimé: {tempo:.2f} BPM')
     plt.grid(True)
     plt.show()
-
+compute_beat_histogram("C:\Users\MSI\Downloads\The Beatles - Come Together.wav")
 # Exemple d'utilisation
 # Remplace 'audio_file.wav' par le chemin de ton fichier audio
 #audio_path = "chemin/vers/audio.wav"
