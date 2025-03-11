@@ -1,0 +1,19 @@
+import librosa
+import librosa.display
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Charger un fichier audio
+y, sr = librosa.load("chemin/vers/fichier_audio.wav")
+
+# Calcul du rolloff spectral (par défaut à 85 %)
+spectral_rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr, roll_percent=0.85)
+
+# Affichage du rolloff spectral
+plt.figure(figsize=(10, 4))
+plt.semilogy(spectral_rolloff.T, label="Rolloff Spectral (Hz)", color="r")
+plt.ylabel("Fréquence (Hz)")
+plt.xlabel("Trame (Time Frame)")
+plt.legend()
+plt.title("Rolloff Spectral (85%)")
+plt.show()
