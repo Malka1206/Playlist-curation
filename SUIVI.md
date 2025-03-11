@@ -8,5 +8,5 @@
 lien: https://www.kaggle.com/datasets/carlthome/gtzan-genre-collection/data
 
 04 Mars (tous) : Présentation des recherches de chacun et discussion des caractéristiques et des classificateurs à utiliser
-
+11 Mars Malek: Ajout d'une autre caractéristique spectrale (spectral centroid) dans le code, la sortie va être un vecteur
 A faire pour 11 mars : écrire le code pour l'extraction des cractéristiques identifiées
