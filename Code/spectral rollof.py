@@ -47,7 +47,7 @@ n_mfcc = 13  # Nombre de coefficients MFCC conservés
 
 #showing spectral centroid
 spectral_centroid = compute_spectral_centroid(signal, Fs, n_fft, hop_size)
-print(spectral_centroid)
+print(spectral_centroid,spectral_centroid.shape)
 
 # 🔹 Affichage du Spectral Centroid
 plt.figure(figsize=(10, 4))
