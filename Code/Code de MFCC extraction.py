@@ -114,11 +114,17 @@ signal,Fs = charger_audio(chemin_fichier)
 n_fft = 2048  # Taille de la FFT
 hop_size = 512  # Décalage entre fenêtres
 n_mels = 20  # Nombre de filtres MEL
-n_mfcc = 13  # Nombre de coefficients MFCC conservés
+n_mfcc = 5  # Nombre de coefficients MFCC conservés
 
-#showing MFCC
 mfccs,mfccs_shape= MFCC(signal,Fs,n_fft,hop_size,n_mels,n_mfcc)
-print( mfccs,mfccs_shape)
+
+mfcc_variances=np.var(mfccs,axis=1)
+print(mfcc_variances)
+
+mfcc_means=np.mean(mfccs,axis=1)
+print(mfcc_means)
+
+
 """plt.figure(figsize=(10, 4))
 librosa.display.specshow(mfccs, x_axis='time', sr=Fs, hop_length=hop_size, cmap='coolwarm')
 plt.colorbar(label='Amplitude')
