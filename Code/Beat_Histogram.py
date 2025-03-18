@@ -33,4 +33,4 @@ def compute_beat_histogram(audio_file):
     plt.grid(True)
     plt.show()
 
-compute_beat_histogram("hiphop.00005.au")
+compute_beat_histogram("C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Code\\musique.wav")

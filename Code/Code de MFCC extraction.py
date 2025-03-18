@@ -26,7 +26,7 @@ def bruit_blanc(duree=1.0, echantillon=16000):
     return signal
 
 
-def charger_audio(chemin_fichier, sr=16000):
+def charger_audio(chemin_fichier, sr=16000): #sr : fréq d'échantillonnage
     signal, Fs = librosa.load(chemin_fichier, sr=sr)
     return signal, Fs
 
@@ -107,7 +107,7 @@ def MFCC(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
 # Test du MFCC et charger le fichier audio
 extension=input("donner l'extension du fichier: ")
 musique=input("donner le nom du fichier "+extension+":" )
-chemin_fichier = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Frequency features/" +musique+"."+extension
+chemin_fichier = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\" +musique+"."+extension
 
 signal,Fs = charger_audio(chemin_fichier)
 

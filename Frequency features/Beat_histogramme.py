@@ -39,7 +39,7 @@ def compute_beat_histogram(audio_path, bpm_min=40, bpm_max=200):
     return bpm_hist, bins
 
 # Spécifier le chemin du fichier audio
-audio_file = "chemin/vers/fichier.wav"
+audio_file = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\musique.wav"
 
 # Calculer le beat histogramme
 bpm_hist, bins = compute_beat_histogram(audio_file)
