@@ -126,7 +126,3 @@ plt.title('MFCCs')
 plt.xlabel('Temps (s)')
 plt.ylabel('Coefficients MFCC')
 plt.show()"""
-
-
-
-
