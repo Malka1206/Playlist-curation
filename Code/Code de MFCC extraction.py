@@ -102,12 +102,14 @@ def MFCC(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     mfccs = dct(log_mel_spectrum, type=2, axis=0, norm='ortho')[:n_mfcc]
 
     mfccs_used=mfccs[:n_mfcc,:]
-    return mfccs_used, mfccs_used.shape
+    mfcc_variances=np.var(mfccs_used,axis=1)
+    mfcc_means=np.mean(mfccs_used,axis=1)
+    return mfcc_variances,mfcc_means
 
 # Test du MFCC et charger le fichier audio
 extension=input("donner l'extension du fichier: ")
 musique=input("donner le nom du fichier "+extension+":" )
-chemin_fichier = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\" +musique+"."+extension
+chemin_fichier = "C:\\Users\\Administrateur\\Documents\\projet Artishow\\playlist-curation\\Frequency features\\" +musique+"."+extension
 
 signal,Fs = charger_audio(chemin_fichier)
 
@@ -116,12 +118,8 @@ hop_size = 512  # Décalage entre fenêtres
 n_mels = 20  # Nombre de filtres MEL
 n_mfcc = 5  # Nombre de coefficients MFCC conservés
 
-mfccs,mfccs_shape= MFCC(signal,Fs,n_fft,hop_size,n_mels,n_mfcc)
-
-mfcc_variances=np.var(mfccs,axis=1)
+mfcc_variances,mfcc_means= MFCC(signal,Fs,n_fft,hop_size,n_mels,n_mfcc)
 print(mfcc_variances)
-
-mfcc_means=np.mean(mfccs,axis=1)
 print(mfcc_means)
 
 
