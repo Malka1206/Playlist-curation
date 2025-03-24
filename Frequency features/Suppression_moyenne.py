@@ -7,7 +7,7 @@ def remove_mean(signal):
     return signal - np.mean(signal)
 
 # Charger un fichier audio
-file_path = "chemin/vers/fichier.wav"
+file_path = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\hiphop.00005.au"
 y, sr = librosa.load(file_path, sr=None)  # Charger avec la fréquence d'échantillonnage originale
 
 # Suppression de la moyenne
