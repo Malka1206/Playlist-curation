@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Charger un fichier audio
-y, sr = librosa.load("chemin/vers/fichier_audio.wav")
+y, sr = librosa.load("C:\Users\MSI\Desktop\TELECOM\Artishow\playlist-curation\Frequency features\hiphop.00005.au")
 
 # Calculer le spectrogramme en magnitude avec la STFT
 stft = np.abs(librosa.stft(y))
