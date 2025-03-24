@@ -35,7 +35,7 @@ def compute_spectral_rollof(signal, sr, n_fft, hop_length):
     spectral_rolloff_means=np.mean(spectral_rolloff,axis=1)
     return spectral_rolloff_variances,spectral_rolloff_means
 
-# Test du MFCC et charger le fichier audio
+"""# Test du MFCC et charger le fichier audio
 extension=input("donner l'extension du fichier: ")
 musique=input("donner le nom du fichier "+extension+":" )
 chemin_fichier = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Frequency features/"+musique+"."+extension
@@ -48,7 +48,7 @@ n_mfcc = 13  # Nombre de coefficients MFCC conservés
 
 spectral_rolloff_variances,spectral_rolloff_means= compute_spectral_rollof(signal, Fs, n_fft, hop_size)
 print(spectral_rolloff_variances)
-print(spectral_rolloff_means)
+print(spectral_rolloff_means)"""
 
 """# Affichage du rolloff spectral
 plt.figure(figsize=(10, 4))

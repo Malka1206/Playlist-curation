@@ -35,7 +35,7 @@ def compute_spectral_centroid(signal, sr, n_fft, hop_length):
     spectral_centroid_means=np.mean(spectral_centroid,axis=1)
     return spectral_centroid_variances,spectral_centroid_means
 
-# Test du MFCC et charger le fichier audio
+"""# Test du MFCC et charger le fichier audio
 extension=input("donner l'extension du fichier: ")
 musique=input("donner le nom du fichier "+extension+":" )
 chemin_fichier = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Frequency features/" +musique+"."+extension
@@ -49,7 +49,7 @@ n_mfcc = 13  # Nombre de coefficients MFCC conservés
 #showing spectral centroid
 spectral_centroid_variances,spectral_centroid_means = compute_spectral_centroid(signal, Fs, n_fft, hop_size)
 print(spectral_centroid_variances)
-print(spectral_centroid_means)
+print(spectral_centroid_means)"""
 
 """# 🔹 Affichage du Spectral Centroid
 plt.figure(figsize=(10, 4))

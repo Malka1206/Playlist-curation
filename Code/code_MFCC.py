@@ -106,7 +106,7 @@ def MFCC(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     mfcc_means=np.mean(mfccs_used,axis=1)
     return mfcc_variances,mfcc_means
 
-# Test du MFCC et charger le fichier audio
+"""# Test du MFCC et charger le fichier audio
 extension=input("donner l'extension du fichier: ")
 musique=input("donner le nom du fichier "+extension+":" )
 chemin_fichier = "C:\\Users\\Administrateur\\Documents\\projet Artishow\\playlist-curation\\Frequency features\\" +musique+"."+extension
@@ -120,7 +120,7 @@ n_mfcc = 5  # Nombre de coefficients MFCC conservés
 
 mfcc_variances,mfcc_means= MFCC(signal,Fs,n_fft,hop_size,n_mels,n_mfcc)
 print(mfcc_variances)
-print(mfcc_means)
+print(mfcc_means)"""
 
 
 """plt.figure(figsize=(10, 4))
