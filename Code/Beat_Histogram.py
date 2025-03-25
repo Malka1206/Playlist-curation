@@ -23,6 +23,8 @@ def compute_beat_histogram(audio_file):
     plt.grid(True)
     plt.show()
 
+compute_beat_histogram("C:\\Users\\ASUS ZEN BOOK\\Downloads\\Dalida - Le temps des fleurs (Official Lyric Video).wav")
+
 # Exemple d'utilisation
 # Remplace 'audio_file.wav' par le chemin de ton fichier audio
 #audio_path = "chemin/vers/audio.wav"
