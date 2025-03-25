@@ -1,0 +1,30 @@
+import librosa
+import librosa.display
+import numpy as np
+import matplotlib.pyplot as plt
+
+def extract_spectral_centroid(audio_path, sr=22050, hop_length=512):
+    # Charger le fichier audio
+    y, sr = librosa.load(audio_path, sr=sr)
+    
+    # Calculer le centroïde spectral
+    spectral_centroids = librosa.feature.spectral_centroid(y=y, sr=sr, hop_length=hop_length)
+    
+    # Normaliser le centroïde spectral pour affichage
+    frames = range(len(spectral_centroids[0]))
+    times = librosa.frames_to_time(frames, sr=sr, hop_length=hop_length)
+    
+    # Affichage du signal audio et du centroïde spectral
+    plt.figure(figsize=(12, 6))
+    librosa.display.waveshow(y, sr=sr, alpha=0.5)
+    plt.plot(times, spectral_centroids[0], color='r', label='Centroïde Spectral')
+    plt.xlabel('Temps (s)')
+    plt.ylabel('Fréquence (Hz)')
+    plt.title('Centroïde Spectral d'un fichier audio')
+    plt.legend()
+    plt.show()
+    
+    return spectral_centroids
+
+# Exemple d'utilisation
+spectral_centroid = extract_spectral_centroid("chemin/vers/fichier_audio.wav")

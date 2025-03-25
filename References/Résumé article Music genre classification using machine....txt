@@ -1,0 +1,25 @@
+Résumé article "Music genre classification using Machine Learning techniques":
+
+Partie 1:
+	On fait du pre-processing du signal sonore pour augmenter le SNR en utilisant un filtre (l'équation est donnée dans l'article)
+Partie 2:
+	La première méthode consiste à utiliser la reconnaissance par image par un réseau neuronal CNN:
+		1ere étape: Transformer le signal sonore en spectrogramme 2D de type Mel ( axe x = temps; axe y = fréquence) on utilise le STFT
+		2éme étape: Réaliser un réseau de type CNN; on décrit les différentes composante et couche (conv, pooling, dropout, L2 regularisation) ainsi 		que la non-linear activation 
+Partie 3 & 4:
+	je regroupe ces 2 partie car ils vont de pair. Dans cette méthode, on utilise ce qu'on appelle des features extrait manuellement (partie 3) et on les 	mets comme entrée pour les classificateurs de type Machine Learning (partie 4)
+	
+	Partie 3: on divise les différents caractéristiques en 2: des caractéristiques (=features) basé sur le temps et ceux basé sur les fréquence ainsi:
+		*dans le domaine temps on a : Central moments, ZCR, RMSE, Tempo
+		*dans le domaine fréquence on a comme features: MFCC, Chroma Features, Spectral centroid, spectral Band-Width, Spectral contrast, Spectral 		Roll-off
+	Partie 4: on présente les différents classificateurs: Logistic Regression (LR), Random Forest (RF), Gradient Boosting (XGB), Support Vector Machines 	          (SVM)
+		
+Partie 5: 
+	On présente dans cette partie les résultats de toutes les méthodes on utilisants touts les types de CNN et touts les types classificateurs mentionnés
+	et on les évalue selon 3 critères: Précision, F-score et le AUC (il faut lire les définitions dans le doc pour les comprendre) 				on discute 4 parties:
+		*résultats généraux (petit spoil les meilleu c le traitement par image)
+		* les features les plus important (petit spoiler c le MFCC)
+		*on évalue aussi les résultas en utilisant uniquement les features de domaine temps puis uniquement fréquence puis les 2 ensemble (pas besoin		de vous dire qui est le meilleur résultat)
+		*on evalue finalement la différence entre classificateurs et réseau CNN en utilisant les matrices de confusion 
+
+Conclusion: Ceci est un résumé en grande ligne pour bien se situer en lisant le doc cependant si vous voulez approfondir la connaissance il faut bien lire les parties (il faut pas abuser non plus)
