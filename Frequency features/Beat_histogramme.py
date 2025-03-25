@@ -13,7 +13,7 @@ def compute_beat_histogram(audio_path, bpm_min=40, bpm_max=200, duration=30):
     :param duration: Durée maximale de l'audio à charger (en secondes)
     :return: Histogramme des battements (beat histogram)
     """
-    # Charger une partie de l'audio pour réduire le temps de calcul
+    # Charger une partie de l'audio pour réduire le temps de calcu
     y, sr = librosa.load(audio_path, sr=None, duration=duration)
 
     # Suppression de la moyenne pour éviter le biais DC
