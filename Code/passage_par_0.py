@@ -9,8 +9,12 @@ y, sr = librosa.load("C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curat
 zero_crossings = librosa.feature.zero_crossing_rate(y)[0]
 
 # Extraire les caractéristiques
-mean_zcr = np.mean(zero_crossings)  # Moyenne du taux de passages par zéro
-var_zcr = np.var(zero_crossings)    # Variance du taux de passages par zéro
+mean_zcr = np.mean(zero_crossings)
+
+var_zcr = 0 
+for i in range(len(zero_crossings)):
+    var_zcr= (zero_crossings(i)-mean_zcr)**2
+
 
 # Affichage du taux de passage par zéro
 plt.figure(figsize=(10, 4))
