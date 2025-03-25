@@ -9,4 +9,6 @@ lien: https://www.kaggle.com/datasets/carlthome/gtzan-genre-collection/data
 
 04 Mars (tous) : Présentation des recherches de chacun et discussion des caractéristiques et des classificateurs à utiliser
 11 Mars Malek: Ajout d'une autre caractéristique spectrale (spectral centroid) dans le code, la sortie va être un vecteur
-A faire pour 11 mars : écrire le code pour l'extraction des cractéristiques identifiées
+25 Mars Malek: Ajout des scripts spectral flux et rollof spectrale ainsi qu'un script qui regroupe tous les caractéristiques en un vecteur via importation par module
+
+A faire pour 1 Avril : distrubution entre Molka et Nawres des scripts des caractéristiques rythmiques et les regrouper en un vecteur/ Aziz: écriture de code de knn, kmean et exploration d'autre script de classificateur/ Malek: Réalisation et compréhension du script d'un classificateur GMM (gaussian mixed model) ainsi que des recherches sur d'autres classificateurs
