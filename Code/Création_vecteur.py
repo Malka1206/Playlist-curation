@@ -5,7 +5,10 @@ from spectral_centroid import compute_spectral_centroid
 from Flux_spectral import compute_spectral_flux
 from Rollof_spectral import compute_spectral_rollof
 from passage_par_0 import compute_passage_0
-from 
+from Caractéristique_à_faible_énergie import compute_carac_faible_energie
+
+#FenAnalyse = 0.023 s
+#FenTexture = 1 s --> 43 fenêtres d'analyse
 
 def charger_audio(chemin_fichier, sr=16000): #sr : fréq d'échantillonnage
     signal, Fs = librosa.load(chemin_fichier, sr=sr)
@@ -23,7 +26,11 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     MFCC_var,MFCC_mean = MFCC(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
     SpectCentr_var,SpectCentr_mean = compute_spectral_centroid(signal, Fs, n_fft, hop_size)
     SpectRollof_var,SpectRollof_mean = compute_spectral_rollof(signal, Fs, n_fft, hop_length=hop_size)
-    Pass0_mean,Pass0_var = com^pute_passage_0(signa,FS)
+    SpectFlux_var,SpectFlux_mean = compute_spectral_flux(signal,n_ftt,hop_size)
+    Pass0_var,Pass0_mean = compute_passage_0(signa,FS)
+    LowEnergy = compute_carac_faible_energie(signal,Fs)
+    vect = np.concatenate((MFCC_var,MFCC_mean),axis=0)
+
 
 
     """
