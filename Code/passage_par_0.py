@@ -16,7 +16,7 @@ def compute_passage_0(y,sr):
     for i in range(len(zero_crossings)):
         var_zcr= (zero_crossings(i)-mean_zcr)**2
     
-    return mean_zcr, var_zcr
+    return var_zcr, mean_zcr
 
 
 # Affichage du taux de passage par zéro
