@@ -13,4 +13,6 @@ lien: https://www.kaggle.com/datasets/carlthome/gtzan-genre-collection/data
 
 A faire pour 01 Avril - 08 Avril : distrubution entre Molka et Nawres des scripts des caractéristiques rythmiques et les regrouper en un vecteur/ Aziz: écriture de code de knn, kmean et exploration d'autre script de classificateur/ Malek: Réalisation et compréhension du script d'un classificateur GMM (gaussian mixed model) ainsi que des recherches sur d'autres classificateurs
 
-08 Avril, Aziz & Malek:  Documentation sur les algorithmes de classification selon un modèle multi gaussien (GMM). Nous comparons les complexités temporelles des algorithmes Random Forest et GMM. 
+01-08 Avril, Aziz & Malek:  Documentation sur les algorithmes de classification selon un modèle multi gaussien (GMM). Nous comparons les complexités temporelles des algorithmes Random Forest et GMM.
+
+08 Avril, Aziz & Malek: Ecriture d'un code de classification GMM, pour des vecteurs de 19 caractéristiques, connaissant déjà la classification des données utilisées (genres des chansons dans notre base de données)
