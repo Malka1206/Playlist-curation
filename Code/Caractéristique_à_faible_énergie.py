@@ -31,10 +31,9 @@ def compute_carac_faible_energie(y,sr):
         low_energy_ratio.append(low_energy_count / len(rms_texture))  # Pourcentage
 
     # Moyenne globale de la caractéristique
-    low_energy_feature_mean = np.mean(low_energy_ratio)
-    low_energy_feature_var = np.var(low_energy_ratio)
+    low_energy_feature = np.mean(low_energy_ratio)
 
-    return low_energy_feature_var, low_energy_feature_mean
+    return low_energy_feature
 
 # Affichage du résultat
 print(f"Caractéristique à faible énergie : {low_energy_feature:.2%}")
