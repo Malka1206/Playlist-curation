@@ -4,7 +4,7 @@ import librosa.display
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
-def compute_beat_characteristics(audio_path, bpm_min=40, bpm_max=200):
+def compute_beat_characteristics(audio_path, bpm_min=25, bpm_max=250):
     """
     Calcule les caractéristiques principales du beat histogramme.
     
@@ -52,10 +52,7 @@ def compute_beat_characteristics(audio_path, bpm_min=40, bpm_max=200):
     RA = A1 / A0 if A0 != 0 else 0  # Rapport entre A1 et A0
     SUM = np.sum(bpm_hist)  # Somme totale des amplitudes de l'histogramme
 
-    return {
-        "A0": A0, "A1": A1, "RA": RA,
-        "P1": P1, "P2": P2, "SUM": SUM
-    }
+    return (A0, A1, RA, P1, P2, SUM)
 
 # Spécifier le chemin du fichier audio
 audio_file = "chemin/vers/fichier.wav"
