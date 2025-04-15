@@ -16,3 +16,6 @@ A faire pour 01 Avril - 08 Avril : distrubution entre Molka et Nawres des script
 01-08 Avril, Aziz & Malek:  Documentation sur les algorithmes de classification selon un modèle multi gaussien (GMM). Nous comparons les complexités temporelles des algorithmes Random Forest et GMM.
 
 08 Avril, Aziz & Malek: Ecriture d'un code de classification GMM, pour des vecteurs de 19 caractéristiques, connaissant déjà la classification des données utilisées (genres des chansons dans notre base de données)
+
+15 Avril, Aziz : Adaptation du code de la caractéristique à faible énergie, son application sur la base de données de 10 genres et 100 chansons par genre.
+On a désormais une autre caractéristique entièrement calculée. Objectifs : Créer un seul fichier python pour le calcul de toutes les caractéristiques à utiliser, faire une classification grossière pour tester les codes de classification.
