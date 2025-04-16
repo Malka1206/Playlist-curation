@@ -20,3 +20,6 @@ A faire pour 01 Avril - 08 Avril : distrubution entre Molka et Nawres des script
 15 Avril, Aziz : Adaptation du code de la caractéristique à faible énergie, son application sur la base de données de 10 genres et 100 chansons par genre.
 On a désormais une autre caractéristique entièrement calculée. Objectifs : Créer un seul fichier python pour le calcul de toutes les caractéristiques à utiliser, faire une classification grossière pour tester les codes de classification.
 Documentation : Classification GMM, initialisation kmean
+
+15 Avril, Molka : amélioration du code beat_histogramme et intégrer le code d'extraction des caractéristiques à partir du beat histogramme.
+Documentation : initialisation kmean.
