@@ -33,7 +33,7 @@ class GMM:
             self.weights_[k] = len(Xk) / n_samples
             self.covariances_[k] = np.var(Xk, axis=0) + 1e-6  # diagonale uniquement
 
-    def _e_step(self, X):
+    def E_step(self, X):
         n_samples, _ = X.shape
         self.resp_ = np.zeros((n_samples, self.n_components))
 
@@ -46,25 +46,25 @@ class GMM:
         # Normalisation des responsabilités
         self.resp_ = self.resp_ / self.resp_.sum(axis=1, keepdims=True)
 
-    def _m_step(self, X):
-        n_samples, n_features = X.shape
-        Nk = self.resp_.sum(axis=0)
+    def M_step(self, X):
+        n_samples = X.shape [0]
+        Vecteur_somme_par_composante = self.resp_.sum(axis=0)
 
-        self.weights_ = Nk / n_samples
-        self.means_ = (self.resp_.T @ X) / Nk[:, np.newaxis]
+        self.weights_ = Vecteur_somme_par_composante / n_samples
+        self.means_ = (self.resp_.T @ X) / Vecteur_somme_par_composante[:, np.newaxis]
 
         for k in range(self.n_components):
             diff = X - self.means_[k]
             weighted_diff = self.resp_[:, k][:, np.newaxis] * (diff ** 2)
-            self.covariances_[k] = weighted_diff.sum(axis=0) / Nk[k] + 1e-6
+            self.covariances_[k] = weighted_diff.sum(axis=0) / Vecteur_somme_par_composante[k] + 1e-6
 
     def fit(self, X):
         self._initialize_parameters(X)
 
         log_likelihood_old = None
         for _ in range(self.max_iter):
-            self._e_step(X)
-            self._m_step(X)
+            self.E_step(X)
+            self.M_step(X)
 
             # Calcul du log-vraisemblance
             log_likelihood = np.sum(np.log(self.resp_.sum(axis=1)))
