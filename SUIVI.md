@@ -23,5 +23,8 @@ Documentation : Classification GMM, initialisation kmean
 Documentation : initialisation kmean.
 
 15 Avril Malek: Correction et compréhension totale du code du réseau neuronnal GMM. Le GMM est un réseau neuronnal qui travaille avec des lois des vecteurs de probabilité gaussiennes, il fait partie de l'apprentissage par probabilité. Il est initialement utilisé pour de l'apprentissage non supérvisé (car il est très proche de l'algo Kmean) mais dans notre cas et conformément à l'un des document on l'utilisera dans un cadre d'apprentissage supérvisé. 
+                Documentation : Lien TypeScript-Python (utiliser des fonctions python pour le fichier qui a été drop sur le index.html)
 
 16 Avril Malek: Réalisation d'un code de transformation d'étiquette de genre en une de probabilité et mise en accord avec le reste du groupe sur une première version d'entraînement: On va pour la 1ère version utilsé un seul GMM pour un genre musicale et l'entraîner. Puis on va voir la performance du modèle (vitesse, précision, erreur, etc...), ensuite une session de debuggage s'il le faut. A la fin décider si on fait de l'optimisation ou on crée notre réseau complet et on commence la phase finale.
+
+16 Avril Aziz : (début) Création d'un site Web qui sert à détecter le genre du fichier audio déposé, programmé avec TypeScript (Voir commit site/script.ts)
