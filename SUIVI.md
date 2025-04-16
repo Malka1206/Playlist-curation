@@ -11,8 +11,6 @@ lien: https://www.kaggle.com/datasets/carlthome/gtzan-genre-collection/data
 11 Mars Malek: Ajout d'une autre caractéristique spectrale (spectral centroid) dans le code, la sortie va être un vecteur
 25 Mars Malek: Ajout des scripts spectral flux et rollof spectrale ainsi qu'un script qui regroupe tous les caractéristiques en un vecteur via importation par module
 
-A faire pour 01 Avril - 08 Avril : distrubution entre Molka et Nawres des scripts des caractéristiques rythmiques et les regrouper en un vecteur/ Aziz: écriture de code de knn, kmean et exploration d'autre script de classificateur/ Malek: Réalisation et compréhension du script d'un classificateur GMM (gaussian mixed model) ainsi que des recherches sur d'autres classificateurs
-
 01-08 Avril, Aziz & Malek:  Documentation sur les algorithmes de classification selon un modèle multi gaussien (GMM). Nous comparons les complexités temporelles des algorithmes Random Forest et GMM.
 
 08 Avril, Aziz & Malek: Ecriture d'un code de classification GMM, pour des vecteurs de 19 caractéristiques, connaissant déjà la classification des données utilisées (genres des chansons dans notre base de données)
@@ -23,3 +21,7 @@ Documentation : Classification GMM, initialisation kmean
 
 15 Avril, Molka : amélioration du code beat_histogramme et l'essayer sur quelques chansons et intégrer le code d'extraction des caractéristiques à partir du beat histogramme. Coder la conversion d'un fichier audio à un histogramme des classes des hauteurs.
 Documentation : initialisation kmean.
+
+15 Avril Malek: Correction et compréhension totale du code du réseau neuronnal GMM. Le GMM est un réseau neuronnal qui travaille avec des lois des vecteurs de probabilité gaussiennes, il fait partie de l'apprentissage par probabilité. Il est initialement utilisé pour de l'apprentissage non supérvisé (car il est très proche de l'algo Kmean) mais dans notre cas et conformément à l'un des document on l'utilisera dans un cadre d'apprentissage supérvisé. 
+
+16 Avril Malek: Réalisation d'un code de transformation d'étiquette de genre en une de probabilité et mise en accord avec le reste du groupe sur une première version d'entraînement: On va pour la 1ère version utilsé un seul GMM pour un genre musicale et l'entraîner. Puis on va voir la performance du modèle (vitesse, précision, erreur, etc...), ensuite une session de debuggage s'il le faut. A la fin décider si on fait de l'optimisation ou on crée notre réseau complet et on commence la phase finale.
