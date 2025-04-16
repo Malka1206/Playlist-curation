@@ -18,19 +18,25 @@ for i in range(pitches.shape[1]):
     if pitch > 0:  # ignorer les silences
         pitch_values.append(pitch)
 
-# === 4. Convertir en notes MIDI et calculer les classes de hauteur (Do, Do#, Ré, etc.) ===
+# === 4. Convertir en notes MIDI et calculer les classes de hauteur (0 à 11) ===
 midi_notes = 69 + 12 * np.log2(np.array(pitch_values) / 440.0)
-pitch_classes = np.round(midi_notes) % 12  # modulo 12 pour ramener à une octave
+pitch_classes = np.round(midi_notes) % 12  # modulo 12 pour ramener à une octave (chroma)
 
-# === 5. Afficher l'histogramme des classes de hauteur ===
+# === 5. Calcul de l'histogramme replié (FPH) ===
+hist, bins = np.histogram(pitch_classes, bins=np.arange(13)-0.5)
+
+# === 6. Calcul de FA0 ===
+FA0 = np.max(hist)
+print(f"FA0 (Amplitude du pic maximal dans FPH) : {FA0}")
+
+# === 7. Afficher l'histogramme des pitch classes numériques ===
 plt.figure(figsize=(8, 4))
-plt.hist(pitch_classes, bins=np.arange(13)-0.5, rwidth=0.8,
-         color='mediumpurple', edgecolor='black')
-plt.xticks(np.arange(12), ['C', 'C#', 'D', 'D#', 'E', 'F',
-                           'F#', 'G', 'G#', 'A', 'A#', 'B'])
-plt.title("Histogramme des classes de hauteur")
-plt.xlabel("Note")
+plt.bar(np.arange(12), hist, width=0.8, color='mediumpurple', edgecolor='black')
+plt.xticks(np.arange(12))  # Pas de noms de notes, juste 0 à 11
+plt.title("Histogramme des classes de hauteur (FPH)")
+plt.xlabel("Classe de hauteur (0–11)")
 plt.ylabel("Occurrence")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
