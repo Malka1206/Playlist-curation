@@ -21,5 +21,5 @@ A faire pour 01 Avril - 08 Avril : distrubution entre Molka et Nawres des script
 On a désormais une autre caractéristique entièrement calculée. Objectifs : Créer un seul fichier python pour le calcul de toutes les caractéristiques à utiliser, faire une classification grossière pour tester les codes de classification.
 Documentation : Classification GMM, initialisation kmean
 
-15 Avril, Molka : amélioration du code beat_histogramme et intégrer le code d'extraction des caractéristiques à partir du beat histogramme.
+15 Avril, Molka : amélioration du code beat_histogramme et l'essayer sur quelques chansons et intégrer le code d'extraction des caractéristiques à partir du beat histogramme.
 Documentation : initialisation kmean.
