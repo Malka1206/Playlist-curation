@@ -25,6 +25,7 @@ def extract_pitch_features(histogram, fold_base=12):
     for i in range(len(histogram)):
         folded[i % fold_base] += histogram[i]
     fp0 = int(np.argmax(folded))
+    fa0 = float(np.max(folded))
 
     # --- IPO1 ---
     folded_peaks, _ = find_peaks(folded)
