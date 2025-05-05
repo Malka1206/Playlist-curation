@@ -41,8 +41,7 @@ def hist_replie(y,sr):
     return int(dominant_octave-1) , int(sum_hist)
 
 
-# Étiquettes des notes (optionnel)
-xticks = np.arange(midi_notes.min(), midi_notes.max() + 1)
+"""xticks = np.arange(midi_notes.min(), midi_notes.max() + 1)
 xtick_labels = [librosa.midi_to_note(m) for m in xticks]
 plt.xticks(xticks, xtick_labels, rotation=45)
 
@@ -51,4 +50,4 @@ plt.xlabel("Note (MIDI)")
 plt.ylabel("Occurrence")
 plt.grid(True)
 plt.tight_layout()
-plt.show()
+plt.show()"""
