@@ -34,3 +34,6 @@ Documentation : initialisation kmean.
 05 Mai Aziz : Erreur d'éxécution et debugging (il faut que la promesse sur script.ts soit résolue, ce qui n'est pas le cas) Je fais des tests primaires sur une fonction qui renvoie "hi"
 
 05 Mai Aziz : Finalement, j'ai abandonné l'idée d'utiliser la bibiothèque flask car elle ne me permet pas d'appliquer ce que je veux. J'ai utilisé un serveur Node de JavaScript qui accède à une fonction fx qui prends en argument un fichier .au et qui renvoie une chaîne de caractères. Le site affiche bien la chaîne renvoyée par fx.
+
+05 Mai Molka : corriger le code d'extraction des caractéristiques (octave dominante + SUM) et l'intégrer dans le code de l'histogramme déplié + vérification en l'essayant sur un fichier audio.
+05 Mai Naoures : écrire le code d'extraction des caractéristiques à partir de l'histogramme replié et l'intégrer dans le code de l'histogramme + vérification en l'essayant sur un fichier audio.
