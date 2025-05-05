@@ -47,8 +47,7 @@ def hist_deplie(y, sr):
 
 
 
-# === 7. Afficher l'histogramme des pitch classes numériques ===
-plt.figure(figsize=(8, 4))
+"""plt.figure(figsize=(8, 4))
 plt.bar(np.arange(12), hist, width=0.8, color='mediumpurple', edgecolor='black')
 plt.xticks(np.arange(12))  # Pas de noms de notes, juste 0 à 11
 plt.title("Histogramme des classes de hauteur (FPH)")
@@ -56,6 +55,6 @@ plt.xlabel("Classe de hauteur (0–11)")
 plt.ylabel("Occurrence")
 plt.grid(True)
 plt.tight_layout()
-plt.show()
+plt.show()"""
 
 
