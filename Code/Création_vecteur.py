@@ -18,8 +18,6 @@ def charger_audio(chemin_fichier, sr=16000): #sr : fréq d'échantillonnage
     return signal, Fs
 
 chemin_fichier=input("chemin_fichier = ")
-
-signal,Fs = charger_audio(chemin_fichier)
 n_fft = 2048  # Taille de la FFT
 hop_size = 512  # Décalage entre fenêtres
 n_mels = 20  # Nombre de filtres MEL
@@ -54,6 +52,12 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     vecteur=np.concatenate((vecteur,l),axis=0)
     vecteur=np.concatenate()
     return vecteur"""
-
+    
+signal,Fs = charger_audio(chemin_fichier)
 vecteur=création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
-print(vecteur)
+def affiche(vecteur):print(vecteur)
+
+def extraction_features(chemin_fichier):
+    signal,Fs = charger_audio(chemin_fichier)
+    return création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
+    
