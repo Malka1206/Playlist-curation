@@ -27,11 +27,15 @@ def hist_replie(audio_pathh):
     plt.figure(figsize=(10, 5))
     bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
     plt.hist(midi_notes, bins=bins, rwidth=0.8, color='skyblue', edgecolor='black')
+
+    # === 6. Créer l'histogramme sous forme de tableau numérique ===
+    hist_values, hist_bins = np.histogram(midi_notes, bins=bins)
+
     # === 7. Calculer SUM ===
-    sum_hist = np.sum(pitch_values)
+    sum_hist = np.sum(hist_values)
     
 
-    # === 6. Extraire l'octave dominante ===
+    # === 8. Extraire l'octave dominante ===
     octaves = (midi_notes // 12).astype(int)  # Calculer l'octave pour chaque note MIDI
     unique_octaves, counts = np.unique(octaves, return_counts=True)  # Compter les occurrences par octave
     dominant_octave = unique_octaves[np.argmax(counts)]  # Identifier l'octave dominante
