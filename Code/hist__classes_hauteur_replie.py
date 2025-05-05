@@ -35,7 +35,7 @@ def hist_deplie(audio_path):
     pitch_classes = np.round(midi_notes) % 12  # modulo 12 pour ramener à une octave (chroma)
 
     # === 5. Calcul de l'histogramme replié (FPH) ===
-    hist, bins = np.histogram(pitch_classes, bins=np.arange(13)-0.5)
+    hist, _ = np.histogram(pitch_classes, bins=np.arange(13)-0.5)
 
     # === 6. Calcul des carac ===
     FA0 = np.max(hist)
