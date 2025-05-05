@@ -15,9 +15,7 @@ def get_first_frequency_for_pitch_class(pitch_class):
             return freq*2
     return None
 
-def hist_deplie(audio_path):
-    y, sr = librosa.load(audio_path)
-
+def hist_deplie(y, sr):
     # === 2. Extraire les pitches (hauteurs) ===
     pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
 
