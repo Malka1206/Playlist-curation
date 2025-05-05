@@ -29,7 +29,7 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_base = "dataset"  
+chemin_base = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Dataset"  
 
 # 1. Chargement
 X, y = charger_donnees(chemin_base)
@@ -38,7 +38,7 @@ X, y = charger_donnees(chemin_base)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
 
 # 3. Création et entraînement du modèle KNN
-knn = KNeighborsClassifier(n_neighbors=5)
+knn = KNeighborsClassifier(n_neighbors=4)
 knn.fit(X_train, y_train)
 
 # 4. Prédictions
