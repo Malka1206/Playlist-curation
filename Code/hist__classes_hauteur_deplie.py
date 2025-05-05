@@ -40,7 +40,7 @@ def hist_replie(audio_pathh):
     unique_octaves, counts = np.unique(octaves, return_counts=True)  # Compter les occurrences par octave
     dominant_octave = unique_octaves[np.argmax(counts)]  # Identifier l'octave dominante
 
-    return int(dominant_octave-1) , float(sum_hist)
+    return int(dominant_octave-1) , int(sum_hist)
 
 
 # Étiquettes des notes (optionnel)
