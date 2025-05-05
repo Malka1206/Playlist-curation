@@ -37,33 +37,9 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     l=np.array([SpectCentr_var,SpectCentr_mean,SpectRollof_var,SpectRollof_mean,SpectFlux_var,SpectFlux_mean,Pass0_var,Pass0_mean,LowEnergy,
                A0, A1, RA, P1, P2, SUM, FA0, FP0, IPO1, octave, SUM1])
     vect = np.concatenate((MFCC_var,MFCC_mean,l),axis=0)
-
     return vect
-
-    """
-    vecteur=[]
-    a,b=0,0
-    MFCC_var,MFCC_mean=MFCC(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
-    vecteur=np.concatenate((MFCC_mean,MFCC_var),axis=0)
-    a,b=compute_spectral_centroid(signal, Fs, n_fft, hop_size)
-    vecteur=np.concatenate((vecteur,a),axis=0)
-    vecteur=np.concatenate((vecteur,b),axis=0)
-    a,b=compute_spectral_rollof(signal, Fs, n_fft, hop_length=hop_size)
-    vecteur=np.concatenate((vecteur,a),axis=0)
-    vecteur=np.concatenate((vecteur,b),axis=0)
-    a,b=compute_spectral_flux(signal,n_fft, hop_length=hop_size)
-    l=np.array([a,b])
-    vecteur=np.concatenate((vecteur,l),axis=0)
-    vecteur=np.concatenate()
-    return vecteur"""
-    
-"""
-chemin_fichier=input("chemin_fichier = ")
-signal,Fs = charger_audio(chemin_fichier)
-vecteur=création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)"""
-def affiche(vecteur):print(vecteur)
 
 def extraction_features(chemin_fichier):
     signal,Fs = charger_audio(chemin_fichier)
-    return création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
+    print(création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc))
     
