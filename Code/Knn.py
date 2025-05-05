@@ -10,7 +10,6 @@ from Création_vecteur import extraction_features
 def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)
 
-# Chargement des données
 def charger_donnees(base_path):
     X = []  # vecteurs de caractéristiques
     y = []  # étiquettes de genre
@@ -30,7 +29,7 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_base = "dataset"  # à adapter si besoin
+chemin_base = "dataset"  
 
 # 1. Chargement
 X, y = charger_donnees(chemin_base)
