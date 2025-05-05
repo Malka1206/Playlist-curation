@@ -4,7 +4,7 @@ import numpy as np
 from scipy.signal import find_peaks
 
 # === 1. Charger le fichier audio (.au ou autre) ===
-audio_path = "C:\\Users\\ASUS ZEN BOOK\\Documents\\artishow\\test\\hiphop.00005 (1).au"
+"""audio_path = "C:\\Users\\ASUS ZEN BOOK\\Documents\\artishow\\test\\hiphop.00005 (1).au"""
 def hist_replie(audio_pathh):
     y, sr = librosa.load(audio_pathh)
 

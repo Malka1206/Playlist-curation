@@ -2,8 +2,7 @@ import librosa
 import numpy as np
 import os
 
-# Charger un fichier audio
-y, sr = librosa.load("C:\\Users\\user\\Desktop\\proj104\\metal00014.au")
+
 
 def compute_carac_faible_energie(y,sr):
     # Définition des paramètres
@@ -36,8 +35,10 @@ def compute_carac_faible_energie(y,sr):
 
     return low_energy_feature
 
+# Charger un fichier audio
+"""y, sr = librosa.load("C:\\Users\\user\\Desktop\\proj104\\metal00014.au")
 def process_genre_folder(genre_path, num_songs):
-    """
+    
     Traite un dossier de genre spécifique.
     
     Args:
@@ -45,7 +46,7 @@ def process_genre_folder(genre_path, num_songs):
         num_songs (int): Nombre de chansons à traiter
     Returns:
         list: Liste des caractéristiques LEF pour ce genre
-    """
+    
     features = []
     audio_files = [f for f in os.listdir(genre_path) if f.endswith('.au')][:num_songs]
     
@@ -101,4 +102,4 @@ with open('cfe.csv', 'w', newline='') as csvfile:
             values_str = ';'.join(map(str, values))
             csvwriter.writerow([genre, values_str])
 
-
+"""

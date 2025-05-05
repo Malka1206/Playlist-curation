@@ -2,8 +2,6 @@ import librosa
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Charger un fichier audio
-y, sr = librosa.load("C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\hiphop.00005.au")
 
 def compute_passage_0(y,sr):
     # Calculer le taux de passage par zéro
@@ -18,12 +16,14 @@ def compute_passage_0(y,sr):
     
     return var_zcr, mean_zcr
 
-
-# Affichage du taux de passage par zéro
-plt.figure(figsize=(10, 4))
-plt.plot(zero_crossings, label="Passages par zéro", color="r")
-plt.xlabel("Trame (Time Frame)")
-plt.ylabel("Taux de passage par zéro")
-plt.title("Taux de passages par zéro du signal audio")
-plt.legend()
-plt.show()
+def exemple():
+    y, sr = librosa.load("C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Frequency features\\hiphop.00005.au")
+    compute_passage_0(y,sr)
+    # Affichage du taux de passage par zéro
+    plt.figure(figsize=(10, 4))
+    plt.plot(zero_crossings, label="Passages par zéro", color="r")
+    plt.xlabel("Trame (Time Frame)")
+    plt.ylabel("Taux de passage par zéro")
+    plt.title("Taux de passages par zéro du signal audio")
+    plt.legend()
+    plt.show()
