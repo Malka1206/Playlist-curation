@@ -5,7 +5,7 @@ from scipy.signal import find_peaks
 
 # === 1. Charger le fichier audio (.au ou autre) ===
 """audio_path = "C:\\Users\\ASUS ZEN BOOK\\Documents\\artishow\\test\\hiphop.00005 (1).au"""
-def hist_replie(y,sr):
+def hist_deplie(y,sr):
     # === 2. Extraire les pitches (hauteurs) ===
     pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
 
