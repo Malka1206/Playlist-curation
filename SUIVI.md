@@ -28,3 +28,5 @@ Documentation : initialisation kmean.
 16 Avril Malek: Réalisation d'un code de transformation d'étiquette de genre en une de probabilité et mise en accord avec le reste du groupe sur une première version d'entraînement: On va pour la 1ère version utilsé un seul GMM pour un genre musicale et l'entraîner. Puis on va voir la performance du modèle (vitesse, précision, erreur, etc...), ensuite une session de debuggage s'il le faut. A la fin décider si on fait de l'optimisation ou on crée notre réseau complet et on commence la phase finale.
 
 16 Avril Aziz : (début) Création d'un site Web qui sert à détecter le genre du fichier audio déposé, programmé avec TypeScript (Voir commit site/script.ts)
+
+20 Avril - 30 Avril, Aziz : Documentation sur la programmation en JavaScript/TypeScript (et sur la bibliothèque python flask), concernant les DropZones et la mise en page. Finalisation du site qui permet de faire glisser un fichier audio (type .au) dans la Dropzone, ayant un boutton détecter le genre, et qui affiche le genre de la chanson traitée.
