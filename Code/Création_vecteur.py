@@ -7,8 +7,9 @@ from Rollof_spectral import compute_spectral_rollof
 from passage_par_0 import compute_passage_0
 from Caractéristique_à_faible_énergie import compute_carac_faible_energie
 from carac_beathist import compute_beat_characterestics
-"""from Carac_a_partir_du_PH import compute_tonal_character
-from hist__classes_hauteur_deplie import hist_replie"""
+from hist__classes_hauteur_replie import hist_replie
+from hist__classes_hauteur_deplie import hist_deplie
+
 
 #FenAnalyse = 0.023 s
 #FenTexture = 1 s --> 43 fenêtres d'analyse
@@ -31,8 +32,10 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     Pass0_var,Pass0_mean = compute_passage_0(signal,Fs)
     LowEnergy = compute_carac_faible_energie(signal,Fs)
     A0, A1, RA, P1, P2, SUM = compute_beat_characterestics(signal,Fs)
-    l=np.array[SpectCentr_var,SpectCentr_mean,SpectRollof_var,SpectRollof_mean,SpectFlux_var,SpectFlux_mean,Pass0_var,Pass0_mean,LowEnergy,
-               A0, A1, RA, P1, P2, SUM]
+    FA0, FP0, IPO1 = hist_deplie(signal,Fs)
+    octave, SUM1 = hist_replie(signal,Fs)
+    l=np.array([SpectCentr_var,SpectCentr_mean,SpectRollof_var,SpectRollof_mean,SpectFlux_var,SpectFlux_mean,Pass0_var,Pass0_mean,LowEnergy,
+               A0, A1, RA, P1, P2, SUM, FA0, FP0, IPO1, octave, SUM1])
     vect = np.concatenate((MFCC_var,MFCC_mean,l),axis=0)
 
     return vect
