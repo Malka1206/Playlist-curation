@@ -4,9 +4,9 @@ import numpy as np
 from scipy.signal import find_peaks
 
 # === 1. Charger le fichier audio (.au ou autre) ===
-audio_path = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Code\\hiphop.00005.au"
-def hist_replie(audio_path):
-    y, sr = librosa.load(audio_path)
+audio_path = "C:\\Users\\ASUS ZEN BOOK\\Documents\\artishow\\test\\hiphop.00005 (1).au"
+def hist_replie(audio_pathh):
+    y, sr = librosa.load(audio_pathh)
 
     # === 2. Extraire les pitches (hauteurs) ===
     pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
@@ -36,7 +36,7 @@ def hist_replie(audio_path):
     unique_octaves, counts = np.unique(octaves, return_counts=True)  # Compter les occurrences par octave
     dominant_octave = unique_octaves[np.argmax(counts)]  # Identifier l'octave dominante
 
-    return dominant_octave-1 , sum_hist
+    return int(dominant_octave-1) , float(sum_hist)
 
 
 # Étiquettes des notes (optionnel)
