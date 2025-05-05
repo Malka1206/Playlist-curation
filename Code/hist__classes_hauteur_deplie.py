@@ -1,30 +1,43 @@
 import librosa
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.signal import find_peaks
 
 # === 1. Charger le fichier audio (.au ou autre) ===
 audio_path = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Code\\hiphop.00005.au"
-y, sr = librosa.load(audio_path)
+def hist_replie(audio_path):
+    y, sr = librosa.load(audio_path)
 
-# === 2. Extraire les pitches (hauteurs) ===
-pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
+    # === 2. Extraire les pitches (hauteurs) ===
+    pitches, magnitudes = librosa.piptrack(y=y, sr=sr)
 
-# === 3. Garder les hauteurs dominantes avec une magnitude significative ===
-pitch_values = []
+    # === 3. Garder les hauteurs dominantes avec une magnitude significative ===
+    pitch_values = []
 
-for i in range(pitches.shape[1]):
-    index = magnitudes[:, i].argmax()
-    pitch = pitches[index, i]
-    if pitch > 0:  # ignorer les silences
-        pitch_values.append(pitch)
+    for i in range(pitches.shape[1]):
+        index = magnitudes[:, i].argmax()
+        pitch = pitches[index, i]
+        if pitch > 0:  # ignorer les silences
+            pitch_values.append(pitch)
 
-# === 4. Convertir en notes MIDI (arrondies à l'entier le plus proche) ===
-midi_notes = np.round(69 + 12 * np.log2(np.array(pitch_values) / 440.0))
+    # === 4. Convertir en notes MIDI (arrondies à l'entier le plus proche) ===
+    midi_notes = np.round(69 + 12 * np.log2(np.array(pitch_values) / 440.0))
 
-# === 5. Afficher l'histogramme des hauteurs (notes MIDI) ===
-plt.figure(figsize=(10, 5))
-bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
-plt.hist(midi_notes, bins=bins, rwidth=0.8, color='skyblue', edgecolor='black')
+    # === 5. Afficher l'histogramme des hauteurs (notes MIDI) ===
+    plt.figure(figsize=(10, 5))
+    bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
+    plt.hist(midi_notes, bins=bins, rwidth=0.8, color='skyblue', edgecolor='black')
+    # === 7. Calculer SUM ===
+    sum_hist = np.sum(pitch_values)
+    
+
+    # === 6. Extraire l'octave dominante ===
+    octaves = (midi_notes // 12).astype(int)  # Calculer l'octave pour chaque note MIDI
+    unique_octaves, counts = np.unique(octaves, return_counts=True)  # Compter les occurrences par octave
+    dominant_octave = unique_octaves[np.argmax(counts)]  # Identifier l'octave dominante
+
+    return dominant_octave-1 , sum_hist
+
 
 # Étiquettes des notes (optionnel)
 xticks = np.arange(midi_notes.min(), midi_notes.max() + 1)
