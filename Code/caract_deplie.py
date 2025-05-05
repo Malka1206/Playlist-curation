@@ -7,19 +7,9 @@ hist_values, hist_bins = np.histogram(midi_notes, bins=bins)
 sum_hist = np.sum(hist_values)
 print(f"SUM (total des hauteurs détectées) : {sum_hist}")
 
-# === 8. Calculer UP0 ===
-# Trouver les pics de l'histogramme (positions des hauteurs dominantes)
-peaks, _ = find_peaks(hist_values)
+# === 6. Extraire l'octave dominante ===
+octaves = (midi_notes // 12).astype(int)  # Calculer l'octave pour chaque note MIDI
+unique_octaves, counts = np.unique(octaves, return_counts=True)  # Compter les occurrences par octave
+dominant_octave = unique_octaves[np.argmax(counts)]  # Identifier l'octave dominante
 
-if len(peaks) > 1:
-    dominant_peak = peaks[np.argmax(hist_values[peaks])]
-    distances = np.abs(peaks - dominant_peak)
-    distances = distances[distances != 0]  # retirer 0 pour ne pas compter le même pic
-    if len(distances) > 0:
-        up0 = int(np.round(np.mean(distances)))
-    else:
-        up0 = 0
-else:
-    up0 = 0
-
-print(f"UP0 (période dominante entre les pics) : {up0}")
+print(f"L'octave dominante est : {dominant_octave-1}")
