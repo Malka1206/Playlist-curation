@@ -32,3 +32,4 @@ Documentation : initialisation kmean.
 20 Avril - 30 Avril, Aziz : Documentation sur la programmation en JavaScript/TypeScript (et sur la bibliothèque python flask), concernant les DropZones et la mise en page. Finalisation du site qui permet de faire glisser un fichier audio (type .au) dans la Dropzone, ayant un boutton détecter le genre, et qui affiche le genre de la chanson traitée. 
 
 05 Mai Aziz : Erreur d'éxécution et debugging (il faut que la promesse sur script.ts soit résolue, ce qui n'est pas le cas) Je fais des tests primaires sur une fonction qui renvoie "hi"
+05 Mai Aziz : Finalement, j'ai abandonné l'idée d'utiliser la bibiothèque flask car elle ne me permet pas d'appliquer ce que je veux. J'ai utilisé un serveur Node de JavaScript qui accède à une fonction fx qui prends en argument un fichier .au et qui renvoie une chaîne de caractères. Le site affiche bien la chaîne renvoyée par fx.
