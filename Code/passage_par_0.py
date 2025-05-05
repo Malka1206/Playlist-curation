@@ -12,7 +12,7 @@ def compute_passage_0(y,sr):
 
     var_zcr = 0 
     for i in range(len(zero_crossings)):
-        var_zcr= (zero_crossings(i)-mean_zcr)**2
+        var_zcr= (zero_crossings[i]-mean_zcr)**2
     
     return var_zcr, mean_zcr
 
