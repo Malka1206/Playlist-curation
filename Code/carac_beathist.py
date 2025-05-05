@@ -40,9 +40,22 @@ def compute_beat_characterestics (y,sr):
 
         # RA : ratio d'amplitude
         RA = raw_A1 / raw_A0
+    if len(peaks) == 1:
+        peak_index = peaks[0]
 
-        # SUM : somme totale de l’histogramme
-        SUM = np.sum(hist)
+        bin_centers = 0.5 * (bin_edges[:-1] + bin_edges[1:])
+        P1 = bin_centers[peak_index]
+        P2 = 0.0  # Valeur neutre
+        raw_A0 = hist[peak_index]
+        raw_A1 = 0.0
+        total_amp = raw_A0
+        A0 = 1.0
+        A1 = 0.0
+        RA = 0.0
+    else:
+        A0 = A1 = RA = P1 = P2 = 0.0
+    # SUM : somme totale de l’histogramme
+    SUM = np.sum(hist)
 
     # Résultat final
     result_tuple = (A0, A1, RA, P1, P2, SUM)

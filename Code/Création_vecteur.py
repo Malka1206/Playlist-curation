@@ -41,5 +41,5 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
 
 def extraction_features(chemin_fichier):
     signal,Fs = charger_audio(chemin_fichier)
-    print(création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc))
+    return création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc)
     

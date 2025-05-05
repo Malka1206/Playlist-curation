@@ -31,8 +31,8 @@ def charger_audio(chemin_fichier, sr=16000):
 
 def compute_spectral_centroid(signal, sr, n_fft, hop_length):
     spectral_centroid = librosa.feature.spectral_centroid(y=signal, sr=sr, n_fft=n_fft, hop_length=hop_length)
-    spectral_centroid_variances=np.var(spectral_centroid,axis=1)
-    spectral_centroid_means=np.mean(spectral_centroid,axis=1)
+    spectral_centroid_variances=np.var(spectral_centroid)
+    spectral_centroid_means=np.mean(spectral_centroid)
     return spectral_centroid_variances,spectral_centroid_means
 
 """# Test du MFCC et charger le fichier audio

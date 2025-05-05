@@ -31,8 +31,8 @@ def charger_audio(chemin_fichier, sr=16000):
 
 def compute_spectral_rollof(signal, sr, n_fft, hop_length):
     spectral_rolloff = librosa.feature.spectral_rolloff(y=signal, sr=sr, n_fft=n_fft, hop_length=hop_length,roll_percent=0.85)
-    spectral_rolloff_variances=np.var(spectral_rolloff,axis=1)
-    spectral_rolloff_means=np.mean(spectral_rolloff,axis=1)
+    spectral_rolloff_variances=np.var(spectral_rolloff)
+    spectral_rolloff_means=np.mean(spectral_rolloff)
     return spectral_rolloff_variances,spectral_rolloff_means
 
 """# Test du MFCC et charger le fichier audio
