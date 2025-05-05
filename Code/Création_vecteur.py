@@ -14,6 +14,8 @@ from hist__classes_hauteur_deplie import hist_deplie
 #FenAnalyse = 0.023 s
 #FenTexture = 1 s --> 43 fenêtres d'analyse
 
+chemin_fichier = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\Code\\hiphop.00005.au"
+
 def charger_audio(chemin_fichier, sr=16000): #sr : fréq d'échantillonnage
     signal, Fs = librosa.load(chemin_fichier, sr=sr)
     return signal, Fs
