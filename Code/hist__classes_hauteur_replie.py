@@ -12,7 +12,7 @@ def get_first_frequency_for_pitch_class(pitch_class):
     for midi_note in range(0, 128):  # Plage MIDI typique
         if midi_note % 12 == pitch_class:
             freq = 440 * 2 ** ((midi_note - 69) / 12)
-            return freq
+            return freq*2
     return None
 
 def hist_deplie(audio_path):
