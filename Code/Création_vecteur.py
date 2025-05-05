@@ -34,8 +34,8 @@ def création_vecteur(signal,Fs, n_fft, hop_size, n_mels, n_mfcc):
     Pass0_var,Pass0_mean = compute_passage_0(signal,Fs)
     LowEnergy = compute_carac_faible_energie(signal,Fs)
     A0, A1, RA, P1, P2, SUM = compute_beat_characterestics(signal,Fs)
-    FA0, FP0, IPO1 = hist_deplie(signal,Fs)
-    octave, SUM1 = hist_replie(signal,Fs)
+    FA0, FP0, IPO1 = hist_replie(signal,Fs)
+    octave, SUM1 = hist_deplie(signal,Fs)
     l=np.array([SpectCentr_var,SpectCentr_mean,SpectRollof_var,SpectRollof_mean,SpectFlux_var,SpectFlux_mean,Pass0_var,Pass0_mean,LowEnergy,
                A0, A1, RA, P1, P2, SUM, FA0, FP0, IPO1, octave, SUM1])
     vect = np.concatenate((MFCC_var,MFCC_mean,l),axis=0)
