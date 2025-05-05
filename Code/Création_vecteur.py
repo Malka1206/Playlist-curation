@@ -8,6 +8,7 @@ from passage_par_0 import compute_passage_0
 from Caractéristique_à_faible_énergie import compute_carac_faible_energie
 from Carac_a_partir_du_BH import compute_beat_characterestics
 from Carac_a_partir_du_PH import compute_tonal_character
+from hist__classes_hauteur_deplie import hist_replie
 
 #FenAnalyse = 0.023 s
 #FenTexture = 1 s --> 43 fenêtres d'analyse
