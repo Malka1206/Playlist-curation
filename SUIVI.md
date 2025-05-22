@@ -40,3 +40,4 @@ Documentation : initialisation kmean.
 
 05 Mai Malek: Réalisation du code knn (le modèle le plus facile d'apprentissage) pour tester les vecteurs caractéristiques réalisés. Execution et essais d'entraînement qui n'ont pas pu aboutir: en effet il y avait des fautes dans des scrypts d'extraction de certains features donc session de debuggage pour tout les scrypts. On conttinue donc de travailler sur le knn, une fois cette session fini et qu'on a pu entrainer notre modèle sans problème avec le knn, on n'aura pas de mal à le changer puisque le GMM y est très proche.
 
+08 Mai - 22 Mai Aziz : Utilisation d'une API de Deezer (Codé en TypeScript, avec un serveur Astro) dans le serveur du site créé pour permettre à l'utilisateur d'écouter des musiques. L'objectif est de demander des chansons selon des critères choisis. Ce critère est le genre, qui sera estimé par le modèle de classification de musique qui ne tardera pas d'être fini.
