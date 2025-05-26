@@ -1,33 +1,35 @@
 import numpy as np
 from sklearn.mixture import GaussianMixture
+import os
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split   
+from Création_vecteur import extraction_features
 
 class MultiGaussianClassifier:
-    def __init__(self, num_classes, num_components=1):
+    def __init__(self, classes, num_components):
         """
         Initialize the Multi Gaussian Classifier.
-
         :param num_classes: Number of classes in the dataset
         :param num_components: Number of Gaussian components per class
         """
-        self.num_classes = num_classes
+        self.classes = classes
         self.num_components = num_components
         self.gmm_models = []
 
     def train(self, X_train, y_train):
         """
         Train the classifier using the training dataset.
-
         :param X_train: Training data (features)
         :param y_train: Training labels (class labels)
         """
         self.gmm_models = []
-        for class_label in range(self.num_classes):
+        for class_label in self.classes:
             # Extract data for the current class
             class_data = X_train[y_train == class_label]
 
             # Train a GMM for the current class
-            gmm = GaussianMixture(n_components=self.num_components, covariance_type='full', random_state=42)
+            gmm = GaussianMixture(n_components=self.num_components,init_params="kmeans",n_init=10,
+                                   covariance_type="diag", random_state=42)
             gmm.fit(class_data)
             self.gmm_models.append(gmm)
 
@@ -41,54 +43,54 @@ class MultiGaussianClassifier:
         predictions = []
         for x in X:
             # Compute the log-likelihood for each class
-            log_likelihoods = [gmm.score_samples(x.reshape(1, -1)) for gmm in self.gmm_models]
+            log_likelihoods = [gmm.score_samples(x.reshape(1, -1))[0] for gmm in self.gmm_models]
 
             # Assign the class with the highest log-likelihood
             predicted_class = np.argmax(log_likelihoods)
-            predictions.append(predicted_class)
+            predictions.append(self.classes[predicted_class])
         return np.array(predictions)
+    
+def extraire_features(fichier_audio):
+    return extraction_features(fichier_audio)
+
+def charger_donnees(base_path):
+    X = []  # vecteurs de caractéristiques
+    y = []  # étiquettes de genre
+    genres = os.listdir(base_path)
+
+    for genre in genres:
+        chemin_genre = os.path.join(base_path, genre)
+        if not os.path.isdir(chemin_genre):
+            continue
+        for fichier in os.listdir(chemin_genre):
+            if fichier.endswith(".au"):
+                chemin_fichier = os.path.join(chemin_genre, fichier)
+                features = extraire_features(chemin_fichier)
+                X.append(features)
+                y.append(genre)
+
+    return np.array(X), np.array(y)
+
+# Chemin vers ta base audio organisée par genre
+chemin_base = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Dataset"  
+
+num_features = 30    
+data,labels=charger_donnees(chemin_base)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
+genres=np.unique(y_train)
+
+# Initialize and train the classifier
+classifier = MultiGaussianClassifier(classes=genres, num_components=num_features)
+classifier.train(X_train, y_train)
+
+# Classify the test data
+y_pred = classifier.classify(X_test)
+print("this is prediction", y_pred[:10])
+print("this is test", y_test[:10])
 
 
-# Example usage
-if __name__ == "__main__":
-    # Generate synthetic data for demonstration (replace with your actual data)
-    np.random.seed(42)
-    num_classes = 10
-    num_features = 19
-    num_samples_per_class = 100
-
-    # Create synthetic data for each class
-    data = []
-    labels = []
-    for class_label in range(num_classes):
-        class_data = np.random.multivariate_normal(
-            mean=np.random.rand(num_features) * 10,  # Random mean for each class
-            cov=np.eye(num_features),  # Identity covariance matrix
-            size=num_samples_per_class
-        )
-        data.append(class_data)
-        labels.extend([class_label] * num_samples_per_class)
-
-    # Combine data and labels
-    data = np.vstack(data)
-    labels = np.array(labels)
-
-    # Split the data into training and testing sets
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
-
-    # Initialize and train the classifier
-    classifier = MultiGaussianClassifier(num_classes=num_classes)
-    classifier.train(X_train, y_train)
-
-    # Classify the test data
-    y_pred = classifier.classify(X_test)
-
-    # Evaluate the model
-    accuracy = accuracy_score(y_test, y_pred)
-    print(f"Classification Accuracy: {accuracy * 100:.2f}%")
-
-    # Example of classifying new data
-    new_data = np.random.multivariate_normal(mean=np.random.rand(num_features) * 10, cov=np.eye(num_features), size=5)
-    new_predictions = classifier.classify(new_data)
-    print("New Data Predictions:", new_predictions)
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Classification Accuracy: {accuracy * 100:.2f}%")  
