@@ -45,3 +45,5 @@ Documentation : initialisation kmean.
 08 Mai - 22 Mai Naoures : Débuggage du code de création du vecteur et gestion des exceptions dans les fonctions élémentaires de calcul de caractéristiques
 
 26 Mai (tous) : test du code KNN pour vérifier l'exploitabilité des vecteurs de caractéristiques tirés des chansons de la base + test du code GMM sur la même base
+
+25 et 26 Mai Aziz : Documentation sur deux modèles de classification (GNN et Random forest) et sur l'utilisation d'API Deezer et Node de JavaScript (Le site marche correctement avec astro sinon). Débugging de la page web de traitement du fichier fourni par l'utilisateur. Le site arrive bien dès maintenant à traiter correctement des fichiers audio avec une fonction python choisie. en cours : Rajout de l'affichage des playlist
