@@ -22,9 +22,9 @@ def hist_deplie(y,sr):
     midi_notes = np.round(69 + 12 * np.log2(np.array(pitch_values) / 440.0))
 
     # === 5. Afficher l'histogramme des hauteurs (notes MIDI) ===
-    plt.figure(figsize=(10, 5))
-    bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
-    plt.hist(midi_notes, bins=bins, rwidth=0.8, color='skyblue', edgecolor='black')
+    #plt.figure(figsize=(10, 5))
+    #bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
+    #plt.hist(midi_notes, bins=bins, rwidth=0.8, color='skyblue', edgecolor='black')
 
     # === 6. Créer l'histogramme sous forme de tableau numérique ===
     hist_values, hist_bins = np.histogram(midi_notes, bins=bins)
