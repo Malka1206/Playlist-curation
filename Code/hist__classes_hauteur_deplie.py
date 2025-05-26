@@ -21,7 +21,12 @@ def hist_deplie(y,sr):
     # === 4. Convertir en notes MIDI (arrondies à l'entier le plus proche) ===
     midi_notes = np.round(69 + 12 * np.log2(np.array(pitch_values) / 440.0))
 
-   
+    # === 5. Afficher l'histogramme des hauteurs (notes MIDI) ===
+  
+    bins = np.arange(midi_notes.min(), midi_notes.max() + 2) - 0.5
+    
+
+    # === 6. Créer l'histogramme sous forme de tableau numérique ===
     hist_values, hist_bins = np.histogram(midi_notes, bins=bins)
 
     # === 7. Calculer SUM ===
