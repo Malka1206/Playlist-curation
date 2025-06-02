@@ -47,3 +47,10 @@ Documentation : initialisation kmean.
 26 Mai (tous) : test du code KNN pour vérifier l'exploitabilité des vecteurs de caractéristiques tirés des chansons de la base + test du code GMM sur la même base
 
 25 et 26 Mai Aziz : Documentation sur deux modèles de classification (GNN et Random forest) et sur l'utilisation d'API Deezer et Node de JavaScript (Le site marche correctement avec astro sinon). Débugging de la page web de traitement du fichier fourni par l'utilisateur. Le site arrive bien dès maintenant à traiter correctement des fichiers audio avec une fonction python choisie. en cours : Rajout de l'affichage des playlist
+
+28 mai : réunion avec les encadrants, discussion de notre avancée sur le projet, les problèmes rencontrés (accuracy de 40% du GMM), les prochaines étapes
+
+2 juin 2025 Naoures : discussion des remarques des encadrants, lecture de la description des modèles proposés par une référence bibliograpgique et leur implémentation et test sur notre base de données avec Malek, comparaisondes résultats trouvés avec ceux proposés par le fichier (on a trouvé une meilleure précision --> voir fichier de comparaison dans apprentissage), défintion des principales tâches qui nous restent à faire : Ce qui nous reste à faire :
+-	Finaliser le site
+-	Chercher une meilleure base de musique actuelle
+-	Préparer le poster à présenter le jour j, à envoyer au plus tard le18 juin (juste avant les partiels)
