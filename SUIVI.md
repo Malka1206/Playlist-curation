@@ -55,3 +55,4 @@ Documentation : initialisation kmean.
 -	Chercher une meilleure base de musique actuelle
 -	Préparer le poster à présenter le jour j, à envoyer au plus tard le18 juin (juste avant les partiels)
 
+28 mai - 02 juin Aziz : Utilisation d'un serveur astro à la place de node de JavaScipt à cause de problèmes de compilation. Préparation des listes des chansons utilisées pour la génération de playlists.
