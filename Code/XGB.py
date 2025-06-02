@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler, label_binarize, LabelEncoder
+from sklearn.metrics import accuracy_score, f1_score, classification_report, roc_auc_score
 from xgboost import XGBClassifier
 import os
 from Création_vecteur import extraction_features
@@ -28,30 +29,65 @@ def charger_donnees(base_path):
 
 # Chemin vers ta base audio organisée par genre
 chemin_base = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Dataset"  
-
-num_features = 30    
 data,labels=charger_donnees(chemin_base)
 
+# Transformer les geres en numéros lisible par le SVM
+label_encoder = LabelEncoder()
+labels_num = label_encoder.fit_transform(labels)
+
 # Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, random_state=42)
-genres=np.unique(y_train)
+# Split the data into training, testing and validation sets
 
-num_classes = len(genres)
+# First split: train+val and test (80% / 20%)
+X_temp, X_test, y_temp, y_test = train_test_split(data, labels_num, test_size=0.2, 
+                                                  random_state=42, stratify=labels_num)
 
-model = XGBClassifier(
-    objective='multi:softmax',      # retourne l'étiquette de classe
-    num_class=num_classes,          # nombre de classes
+# Second split: train and val (from temp, 75% / 25% → 60% / 20% overall)
+X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.25, 
+                                                  random_state=42, stratify=y_temp)
+
+# Normalisation pour que les features qui ont une range importante ne soient pas considérés comme 
+# des features importants 
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+X_test = scaler.transform(X_test)
+ 
+XGB = XGBClassifier(
+    objective='multi:softmax',      
+    num_class=10,          
     eval_metric='mlogloss',
     use_label_encoder=False,
     random_state=42
 )
+XGB.fit(X_train, y_train)
 
-# 2. Entraîner le modèle
-model.fit(X_train, y_train)
+# Validation performance
+y_val_pred = XGB.predict(X_val)
+print("Validation Accuracy:", accuracy_score(y_val, y_val_pred))
+print("\nValidation Report:\n", classification_report(y_val, y_val_pred, target_names=label_encoder.classes_))
 
-# 3. Prédire les classes des vecteurs de test
-y_pred = model.predict(X_test)
+# Prédictions sur les données de test
+y_test_pred = XGB.predict(X_test)
 
-# 4. (Optionnel) Évaluer la précision
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy * 100:.2f}%")
+# précision
+accuracy = accuracy_score(y_test, y_test_pred)
+print("Test Accuracy:", accuracy)
+
+# F1-score macro (moyenne sur les classes, utile pour classes déséquilibrées)
+f1 = f1_score(y_test, y_test_pred, average='macro')
+print("Test F1-score (macro):", f1)
+
+# Rapport complet
+print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred, target_names=label_encoder.classes_))
+
+"""# 🔵 AUC : nécessite une sortie en probabilité ET des labels binarisés
+# Étape 1 : binariser les étiquettes
+y_test_bin = label_binarize(y_test, classes=range(len(label_encoder.classes_)))
+
+# Étape 2 : obtenir les probabilités de chaque classe
+y_score = svm.decision_function(X_test)  
+
+# Étape 3 : calcul de l’AUC macro
+auc = roc_auc_score(y_test_bin, y_score, average='macro', multi_class='ovr')
+print("Test AUC (macro, OvR):", auc)"""
