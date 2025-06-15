@@ -59,4 +59,4 @@ Documentation : initialisation kmean.
 
 06 juin - 11 juin Aziz : Essai d'API Youtube pour la préparation du site, qui pourrait permettre d'implémenter un seul serveur pour le traitement des fichiers (l'API Deezer nécessite un serveur Node de JavaScript)
 
-11 juin Aziz : Test d'un classificateur XGB (accuracy 6.2), recherche d'autres bases de données (test et entraînement)
+14 juin Aziz : Test d'un classificateur XGB (accuracy 6.2), recherche d'autres bases de données (test et entraînement)
