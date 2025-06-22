@@ -60,3 +60,7 @@ Documentation : initialisation kmean.
 06 juin - 11 juin Aziz : Essai d'API Youtube pour la préparation du site, qui pourrait permettre d'implémenter un seul serveur pour le traitement des fichiers (l'API Deezer nécessite un serveur Node de JavaScript)
 
 14 juin Aziz : Test d'un classificateur XGB (accuracy 6.2) et decision tree (5.9), recherche d'autres bases de données (test et entraînement)
+
+20 juin - 22 juin Aziz : Le problème python/typescipt est enfin résolu, après avoir essayé beaucoup de types de serveurs. La librairie python fastAPI permet de lancer un serveur qui s'occupe du traitement du fichier audio envoyé par l'utilisateur.
+
+22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
