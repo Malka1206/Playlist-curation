@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, f1_score, classification_report, roc
 from xgboost import XGBClassifier
 import os
 from Création_vecteur import extraction_features
+import joblib
  
 def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)
@@ -28,7 +29,7 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_base = "C:/Users/Administrateur/Documents/projet Artishow/playlist-curation/Dataset"  
+chemin_base = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\genres"  
 data,labels=charger_donnees(chemin_base)
 
 # Transformer les geres en numéros lisible par le SVM
@@ -91,3 +92,12 @@ y_score = svm.decision_function(X_test)
 # Étape 3 : calcul de l’AUC macro
 auc = roc_auc_score(y_test_bin, y_score, average='macro', multi_class='ovr')
 print("Test AUC (macro, OvR):", auc)"""
+
+# Sauvegarder le modèle XGBoost
+joblib.dump(XGB, "xgb_model.pkl")
+
+# Sauvegarder le scaler
+joblib.dump(scaler, "scaler.pkl")
+
+# Sauvegarder le label encoder
+joblib.dump(label_encoder, "label_encoder.pkl")
