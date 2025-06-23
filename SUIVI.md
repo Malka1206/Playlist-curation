@@ -66,3 +66,5 @@ Documentation : initialisation kmean.
 22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
 
 23 juin Aziz : Liste des musiques de recommendations prête à 80%. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
+
+23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
