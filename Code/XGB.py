@@ -29,7 +29,7 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_base = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\genres"  
+chemin_base = "C:\Users\Administrateur\Documents\projet Artishow\playlist-curation\Dataset"
 data,labels=charger_donnees(chemin_base)
 
 # Transformer les geres en numéros lisible par le SVM
