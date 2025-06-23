@@ -64,3 +64,5 @@ Documentation : initialisation kmean.
 20 juin - 22 juin Aziz : Le problème python/typescipt est enfin résolu, après avoir essayé beaucoup de types de serveurs. La librairie python fastAPI permet de lancer un serveur qui s'occupe du traitement du fichier audio envoyé par l'utilisateur.
 
 22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
+
+23 juin Aziz : Liste des musiques de recommendations prête à 80%. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
