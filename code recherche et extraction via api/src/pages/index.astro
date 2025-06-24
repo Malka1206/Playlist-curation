@@ -1,0 +1,56 @@
+---
+const pageTitle = "Mini Deezer Preview";
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{pageTitle}</title>
+    <style>
+      body { font-family: sans-serif; padding: 2rem; }
+      input { padding: 0.5rem; width: 300px; }
+      button { padding: 0.5rem 1rem; margin-left: 0.5rem; }
+      .result { margin-top: 2rem; }
+      pre { background: #f4f4f4; padding: 1rem; }
+    </style>
+  </head>
+  <body>
+    <h1>{pageTitle}</h1>
+
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Nom de la musique" required />
+      <button type="submit">Rechercher</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script type="module">
+      const form = document.getElementById('searchForm');
+      const input = document.getElementById('searchInput');
+      const resultDiv = document.getElementById('result');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const query = input.value;
+        const response = await fetch(`http://localhost:8000/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        console.log("Données reçues :", data); 
+
+        if (data.preview_url) {
+          resultDiv.innerHTML = `
+            <p><strong>Titre :</strong> ${data.title}</p>
+            <p><strong>Artiste :</strong> ${data.artist}</p>
+            <audio controls src="${data.preview_url}"></audio>
+            <h3>Données complètes :</h3>
+            <pre>${JSON.stringify(data, null, 2)}</pre>
+          `;
+        } else {
+          resultDiv.innerHTML = "<p>Aucun résultat trouvé.</p>";
+        }
+      });
+    </script>
+  </body>
+</html>
+

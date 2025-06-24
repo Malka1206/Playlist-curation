@@ -66,8 +66,8 @@ Documentation : initialisation kmean.
 22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
 
 23 juin Toute l'équipe : Liste des musiques de recommendations prête. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
-
 23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
-
 23 juin Aziz : Le site permet la reccommendation de playlist grâce à un fichier déposé par l'utilisateur.
 23 juin Malek: Création de la fonctionnalité 2
+
+24 juin Malek: code Recherche deezer+ code triage en playlist + debuggage
