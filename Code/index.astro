@@ -1,0 +1,58 @@
+---
+
+ async function getGenresFromDeezer() {
+  // Récupère les artistes du genre classique (ID 98)
+  const response = await fetch("https://api.deezer.com/genre/98/artists");
+  const genrejson = await response.json();
+  
+  if (genrejson.data && genrejson.data.length > 0) {
+    let allTracks = [];
+    
+    // Prendre les 5 premiers artistes classiques
+    const classicalArtists = genrejson.data.slice(0, 10);
+    
+    // Pour chaque artiste, récupérer ses meilleures chansons
+    for (const artist of classicalArtists) {
+      try {
+        const tracksResponse = await fetch(`https://api.deezer.com/artist/${artist.id}/top?limit=2`);
+        const tracksJson = await tracksResponse.json();
+        if (tracksJson.data) {
+          allTracks.push(...tracksJson.data);
+        }
+      } catch (error) {
+        console.log(`Erreur pour l'artiste ${artist.name}:`, error);
+      }
+    }
+    
+    return allTracks;
+  }
+  return [];
+}
+const tracks = await getGenresFromDeezer();
+
+---
+
+<html lang="fr">
+  <head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Musique Classique </title>
+  </head>
+  <body>
+	<h1>Musique Classique </h1>
+	<ul>
+		{tracks.map((track: any, index: number) => (
+			<li>
+				<h3>{index+1}. {track.title}</h3>
+				<p>{track.artist.name}</p>
+				<p>{track.album.title}</p>
+				<img src= {track.album.cover_small} alt="cover" />
+				<audio controls="" preload="none">
+					<source src={track.preview} type="audio/mpeg" />
+					Your browser does not support the audio element.
+					</audio>
+			</li>
+		))}
+	</ul>
+  </body>
+</html>
