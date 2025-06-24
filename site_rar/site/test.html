@@ -1,0 +1,10 @@
+<button id="showVideoBtn">Show Video</button>
+<div id="videoContainer" style="display:none;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/XY3J2Z21kTM?si=dVVLS0eqL0W5SQTB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<script>
+  document.getElementById('showVideoBtn').onclick = function() {
+    document.getElementById('videoContainer').style.display = 'block';
+    this.style.display = 'none';
+  };
+</script>

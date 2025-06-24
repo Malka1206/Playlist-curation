@@ -70,3 +70,4 @@ Documentation : initialisation kmean.
 23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
 
 23 juin Aziz : Le site permet la reccommendation de playlist grâce à un fichier déposé par l'utilisateur.
+23 juin Malek: Création de la fonctionnalité 2

@@ -1,0 +1,139 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      /* Ajout de l'image de fond */
+      background: url('/tof.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: rgba(255,255,255,0.40); /* Opacité réduite */
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      margin-top: 0;
+      color: #2b2d42;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+    label {
+      font-weight: 500;
+      color: #444;
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="file"] {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem;
+      width: 100%;
+      background: #f8f8f8;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    button {
+      background: #2b2d42;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      display: block;
+    }
+    button:hover {
+      background: #41506b;
+    }
+    #result {
+      margin-top: 1rem;
+      min-height: 2rem;
+      color: #222;
+      font-size: 1.1rem;
+      text-align: center;
+      width: 100%;
+    }
+    /* Hide Astro preview overlay and toolbar */
+    [data-astro-dev-toolbar],
+    [data-astro-dev-overlay],
+    .astro-dev-toolbar {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      width: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      z-index: -9999 !important;
+    }
+  </style>
+
+  <div class="container">
+    <Welcome />
+
+    <h2>Analyseur Audio</h2>
+    <form id="audio-form">
+      <label for="audio-file">
+        Déposez un fichier audio ou cliquez pour parcourir :
+      </label>
+      <input 
+        type="file" 
+        id="audio-file" 
+        name="audio" 
+        accept="audio/*"
+      />
+      <button type="submit">Générer une playlist</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script type="module">
+    // Audio form logic
+    const form = document.getElementById('audio-form');
+    const resultDiv = document.getElementById('result');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fileInput = document.getElementById('audio-file');
+      if (!fileInput.files.length) {
+        resultDiv.textContent = "Veuillez sélectionner un fichier audio.";
+        return;
+      }
+      const formData = new FormData();
+      formData.append('audio', fileInput.files[0]);
+      resultDiv.textContent = "Analyse en cours...";
+      const response = await fetch('http://localhost:8000/analyze', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+      resultDiv.textContent = data.result || "Erreur lors de l'analyse.";
+    });
+  </script>
+</Layout>
