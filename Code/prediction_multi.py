@@ -34,5 +34,6 @@ def predire_genres_tries(fichier_audio):
     return [str(genre) for genre, _ in genres_tries]
 
 # Exemple d'utilisation
-chemin_audio = "C:\\Users\\MSI\\Downloads\\Eminem - Houdini [Official Music Video].wav"
-print(predire_genres_tries(chemin_audio))
+"""chemin_audio="C:\\Users\\Administrateur\\Downloads\\musics_actuel\\Eminem - Houdini (Lyrics).wav"
+chemin_audio = "C:\\Users\\MSI\\Downloads\\Eminem - Houdini [Official Music Video].wav
+print(predire_genres_tries(chemin_audio))"""
