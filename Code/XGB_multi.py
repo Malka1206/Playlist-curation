@@ -94,7 +94,7 @@ auc = roc_auc_score(y_test_bin, y_score, average='macro', multi_class='ovr')
 print("Test AUC (macro, OvR):", auc)"""
 
 # Sauvegarder le modèle XGBoost
-joblib.dump(XGB, "xgb_multi_model.pkl")
+joblib.dump(XGB, "xgb_model.pkl")
 
 # Sauvegarder le scaler
 joblib.dump(scaler, "scaler.pkl")

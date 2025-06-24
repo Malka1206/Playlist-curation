@@ -10,20 +10,29 @@ label_encoder = joblib.load("label_encoder.pkl")
 def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)
 
-def predire_genre(fichier_audio):
-    features = extraction_features(fichier_audio)
+def predire_genres_tries(fichier_audio):
+    features = extraire_features(fichier_audio)
     features = np.array(features).reshape(1, -1)
     features_scaled = scaler.transform(features)
 
-    # Obtenir les probabilités pour chaque classe
-    probs = model.predict_proba(features_scaled)
+    # Obtenir les probabilités
+    probs = model.predict_proba(features_scaled)[0]
+    genre_probs = dict(zip(label_encoder.classes_, probs))
 
-    # Associer chaque genre à sa probabilité
-    genre_probs = dict(zip(label_encoder.classes_, probs[0]))
+    # Filtrer les genres avec proba > 0.3
+    genres_filtres = {genre: p for genre, p in genre_probs.items() if p > 0.3}
 
-    return genre_probs
+    # Si 0 ou 1 genre, relâcher le seuil
+    if len(genres_filtres) <= 1:
+        proba_max = max(probs)
+        seuil = proba_max - 0.1
+        genres_filtres = {genre: p for genre, p in genre_probs.items() if p >= seuil}
+
+    # Trier par probabilité décroissante
+    genres_tries = sorted(genres_filtres.items(), key=lambda x: x[1], reverse=True)
+
+    return [str(genre) for genre, _ in genres_tries]
 
 # Exemple d'utilisation
-chemin_audio = "C:\\Users\\MSI\\Downloads\\Le lac des cygnes ( Tchaikovski ).wmv.wav"
-genre_probs = predire_genre(chemin_audio)
-print(f"Les probas des genres sont : {genre_probs}")
+chemin_audio = "C:\\Users\\MSI\\Downloads\\Eminem - Houdini [Official Music Video].wav"
+print(predire_genres_tries(chemin_audio))
