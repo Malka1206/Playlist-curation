@@ -1,0 +1,603 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Liste manuelle des pages du dossier (hors index.astro)
+const pages = [
+  { name: "Blues", path: "/blues.astro" },
+  { name: "Classical", path: "/classical.astro" },
+  { name: "Country", path: "/country" },
+  { name: "Disco", path: "/disco" },
+  { name: "Hiphop", path: "/hiphop" },
+  { name: "Jazz", path: "/jazz" },
+  { name: "Metal", path: "/metal" },
+  { name: "Pop", path: "/pop" },
+  { name: "Raggae", path: "/raggae" },
+  { name: "Rock", path: "/rock" }
+];
+---
+
+<Layout>
+  <Layout>
+  <nav style="width:100%;text-align:center;margin-bottom:2rem;">
+    <a
+      href="/blues.astro"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Blues</a>
+    <a
+      href="/classical"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Classical</a>
+    <a
+      href="/country"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Country</a>
+    <a
+      href="/disco"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Disco</a>
+    <a
+      href="/hiphop"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Hiphop</a>
+    <a
+      href="/jazz"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Jazz</a>
+    <a
+      href="/metal"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Metal</a>
+    <a
+      href="/pop"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Pop</a>
+    <a
+      href="/raggae"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Raggae</a>
+    <a
+      href="/rock"
+      style="margin:0 0.5rem;padding:0.5rem 1.2rem;border-radius:6px;background:#2b2d42;color:#fff;text-decoration:none;font-weight:600;transition:background 0.2s;display:inline-block;cursor:pointer;"
+      onmouseover="this.style.background='#41506b'"
+      onmouseout="this.style.background='#2b2d42'"
+    >Rock</a>
+  </nav>
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      /* Ajout de l'image de fond */
+      background: url('/tof.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: rgba(255,255,255,0.40); /* Opacité réduite */
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      margin-top: 0;
+      color: #2b2d42;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+    label {
+      font-weight: 500;
+      color: #444;
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="file"] {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem;
+      width: 100%;
+      background: #f8f8f8;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    button {
+      background: #2b2d42;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      display: block;
+    }
+    button:hover {
+      background: #41506b;
+    }
+    #result {
+      margin-top: 1rem;
+      min-height: 2rem;
+      color: #222;
+      font-size: 1.1rem;
+      text-align: center;
+      width: 100%;
+    }
+    /* Hide Astro preview overlay and toolbar */
+    [data-astro-dev-toolbar],
+    [data-astro-dev-overlay],
+    .astro-dev-toolbar {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      width: 0 !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      z-index: -9999 !important;
+    }
+
+    .dropzone-row {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      width: 100%;
+    }
+    .dropzone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 320px;
+      min-width: 220px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 1.2rem 1rem 1.5rem 1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+    .dz-btn {
+      margin-bottom: 0.7rem;
+      width: 90%;
+      background: #2b2d42;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dz-btn:hover {
+      background: #41506b;
+    }
+    .dz-label {
+      width: 100%;
+      text-align: center;
+      color: #444;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      display: block;
+    }
+    #result, #results-multi {
+      margin-top: 1rem;
+      min-height: 2rem;
+      color: #222;
+      font-size: 1.1rem;
+      text-align: center;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .dropzone-row {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+      }
+      .dropzone-col {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+
+  <div class="container">
+    <Welcome />
+
+    <div class="dropzone-row">
+      <div class="dropzone-col">
+        <button type="button" class="dz-btn" onclick="document.getElementById('audio-file').click()">Analyser un fichier</button>
+        <form id="audio-form">
+          <input 
+            type="file" 
+            id="audio-file" 
+            name="audio" 
+            accept="audio/*"
+            style="display:none"
+          />
+          <label for="audio-file" class="dz-label">
+            Déposez un fichier audio ou cliquez pour parcourir
+          </label>
+        </form>
+        <div id="result"></div>
+      </div>
+      <div class="dropzone-col">
+        <button type="button" class="dz-btn" onclick="document.getElementById('audio-files').click()">Analyser plusieurs fichiers</button>
+        <form id="audios-form">
+          <input 
+            type="file" 
+            id="audio-files" 
+            name="audios" 
+            accept="audio/*"
+            multiple
+            style="display:none"
+          />
+          <label for="audio-files" class="dz-label">
+            Déposez 1 à 20 fichiers audio ou cliquez pour parcourir
+          </label>
+        </form>
+        <div id="results-multi"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Tableaux des genres musicaux
+    const blues = [
+      "https://www.youtube.com/embed/xVxCtt3s_1M",
+      "https://www.youtube.com/embed/3-drRnX4sig",
+      "https://www.youtube.com/embed/bSfqNEvykv0",
+      "https://www.youtube.com/embed/o_6SlT3Yy10",
+      "https://www.youtube.com/embed/HxCzMAFrTJ8",
+      "https://www.youtube.com/embed/VMUt8KdDtTY",
+      "https://www.youtube.com/embed/Bcus42ihkTI",
+      "https://www.youtube.com/embed/I3MTGhRC82s",
+      "https://www.youtube.com/embed/30j-MewhIhs",
+      "https://www.youtube.com/embed/e_l6A7krjrQ",
+      "https://www.youtube.com/embed/FlKGOp8qkPc",
+      "https://www.youtube.com/embed/CnI_LuCJ4Ek",
+      "https://www.youtube.com/embed/pBV9JwHwIE8",
+      "https://www.youtube.com/embed/p8NQUbLQGio",
+      "https://www.youtube.com/embed/EX5phFmbrU8",
+      "https://www.youtube.com/embed/ClpR3fOKPRA",
+      "https://www.youtube.com/embed/4eQMA_noRYQ",
+      "https://www.youtube.com/embed/neSUe7dO4v0",
+      "https://www.youtube.com/embed/wY4N5NOAsH0",
+      "https://www.youtube.com/embed/3tigVYfHVmQ"
+    ];
+
+    const classique = [
+      "https://www.youtube.com/embed/9E6b3swbnWg",
+      "https://www.youtube.com/embed/1e9B31FLT-s",
+      "https://www.youtube.com/embed/8Da7RgPXCmU",
+      "https://www.youtube.com/embed/XXIu0MRuIQU",
+      "https://www.youtube.com/embed/3LiztfE1X7E",
+      "https://www.youtube.com/embed/xpd5-KGcVmY",
+      "https://www.youtube.com/embed/n3EiRynr1Us",
+      "https://www.youtube.com/embed/MafAZeag1_0",
+      "https://www.youtube.com/embed/Kl6R4Ui9blc",
+      "https://www.youtube.com/embed/D4q7lzfpCIs",
+      "https://www.youtube.com/embed/FoCG-WNsZio",
+      "https://www.youtube.com/embed/PLFVGwGQcB0",
+      "https://www.youtube.com/embed/rVN1B-tUpgs",
+      "https://www.youtube.com/embed/WSSIIC58Fsc",
+      "https://www.youtube.com/embed/SjYecEQFL0U",
+      "https://www.youtube.com/embed/WNcsUNKlAKw",
+      "https://www.youtube.com/embed/_CTYymbbEL4",
+      "https://www.youtube.com/embed/sf9CtbLGzgw",
+      "https://www.youtube.com/embed/r30D3SW4OVw",
+      "https://www.youtube.com/embed/oy2zDJPIgwc"
+    ];
+
+    const country = [
+      "https://www.youtube.com/embed/v2LixP7n_hM",
+      "https://www.youtube.com/embed/4QIZE708gJ4",
+      "https://www.youtube.com/embed/Ct9BFr9XBaI",
+      "https://www.youtube.com/embed/b4Zp75xe6tE",
+      "https://www.youtube.com/embed/cMPEd8m79Hw",
+      "https://www.youtube.com/embed/7qaHdHpSjX8",
+      "https://www.youtube.com/embed/8xg3vE8Ie_E",
+      "https://www.youtube.com/embed/ALV-QtDFpSw",
+      "https://www.youtube.com/embed/krRYW-kwstk",
+      "https://www.youtube.com/embed/HcNILY4gtNI",
+      "https://www.youtube.com/embed/VdH5UlvEueM",
+      "https://www.youtube.com/embed/sir1VEKtneU",
+      "https://www.youtube.com/embed/IpKJdfzLsdU",
+      "https://www.youtube.com/embed/-IMntZU5czA",
+      "https://www.youtube.com/embed/jV2119sUQlo",
+      "https://www.youtube.com/embed/5bACDiiFkVk",
+      "https://www.youtube.com/embed/UIjvqFjWVwk",
+      "https://www.youtube.com/embed/XmZ5b6viMj4",
+      "https://www.youtube.com/embed/bgv_YB4Kvbc",
+      "https://www.youtube.com/embed/2EGabHDMUN0"
+    ];
+
+    const disco = [
+      "https://www.youtube.com/embed/oASZG96v0Rk",
+      "https://www.youtube.com/embed/y9Kqb2z9Lzs",
+      "https://www.youtube.com/embed/pSVbF6DGH9U",
+      "https://www.youtube.com/embed/5Rk8u2FTaG0",
+      "https://www.youtube.com/embed/_SQy6X5g7JU",
+      "https://www.youtube.com/embed/frb34jzxrf0",
+      "https://www.youtube.com/embed/p18Fs0FWnWY",
+      "https://www.youtube.com/embed/TytvMNnmIPs",
+      "https://www.youtube.com/embed/EScLmWJs82I",
+      "https://www.youtube.com/embed/2zvd1JQ0EKY",
+      "https://www.youtube.com/embed/hbpPxljkBCE",
+      "https://www.youtube.com/embed/J_UUmO7zcpU",
+      "https://www.youtube.com/embed/Qvu033SBMYU",
+      "https://www.youtube.com/embed/ws0L3zkVye0",
+      "https://www.youtube.com/embed/2Abk1jAONjw",
+      "https://www.youtube.com/embed/dW2MmuA1nI4",
+      "https://www.youtube.com/embed/JwQZQygg3Lk",
+      "https://www.youtube.com/embed/NUVCQXMUVnI",
+      "https://www.youtube.com/embed/iEPTlhBmwRg",
+      "https://www.youtube.com/embed/GxBSyx85Kp8"
+    ];
+
+    const hiphop = [
+      "https://www.youtube.com/embed/GTFo0VKnNZY",
+      "https://www.youtube.com/embed/yoYZf-lBF_U",
+      "https://www.youtube.com/embed/VC4ORS5n9Hg",
+      "https://www.youtube.com/embed/OwbI9IY9Roo",
+      "https://www.youtube.com/embed/jbdROU6eJVg",
+      "https://www.youtube.com/embed/_eDpH4hMW1o",
+      "https://www.youtube.com/embed/_EyZUTDAH0U",
+      "https://www.youtube.com/embed/sw4r0k8WWqU",
+      "https://www.youtube.com/embed/Iy-dJwHVX84",
+      "https://www.youtube.com/embed/lZcRSy0sk5w",
+      "https://www.youtube.com/embed/T6eK-2OQtew",
+      "https://www.youtube.com/embed/xOPy5ugfQV8",
+      "https://www.youtube.com/embed/R_RJPTR5wIU",
+      "https://www.youtube.com/embed/UceaB4D0jpo",
+      "https://www.youtube.com/embed/LjxulQ1bEWg",
+      "https://www.youtube.com/embed/m1a_GqJf02M",
+      "https://www.youtube.com/embed/96etssDazC4",
+      "https://www.youtube.com/embed/Gb_-rZB2Foc",
+      "https://www.youtube.com/embed/7hCdjhQ1_Gc",
+     
+    ];
+
+    const jazz = [
+      "https://www.youtube.com/embed/ryA6eHZNnXY",
+      "https://www.youtube.com/embed/KJEzFvXx3Xw",
+      "https://www.youtube.com/embed/KLeMDhGs5W8",
+      "https://www.youtube.com/embed/IrAfjW5qiyo",
+      "https://www.youtube.com/embed/Hv152cu8eYc",
+      "https://www.youtube.com/embed/TMvbUKqWYEs",
+      "https://www.youtube.com/embed/hmPbCmW615I",
+      "https://www.youtube.com/embed/SvhmaNlLgRM",
+      "https://www.youtube.com/embed/N-TKOh0zsvU",
+      "https://www.youtube.com/embed/G7fARRnhWSg",
+      "https://www.youtube.com/embed/eQHpwnXf0mI",
+      "https://www.youtube.com/embed/EGwernNsL68",
+      "https://www.youtube.com/embed/h07Nri6n3Y0",
+      "https://www.youtube.com/embed/CWWO_VcdnHY",
+      "https://www.youtube.com/embed/Q1dK1JHacbQ",
+      "https://www.youtube.com/embed/BTxhgmk_ofk",
+      "https://www.youtube.com/embed/4PvN98giKgc",
+      "https://www.youtube.com/embed/otFVFLtRF_s",
+      "https://www.youtube.com/embed/ni9Cp9mOOOg",
+      "https://www.youtube.com/embed/Wu_kYUA5MGo"
+    ];
+
+    const metal = [
+      "https://www.youtube.com/embed/oqdZpxkzNvc",
+      "https://www.youtube.com/embed/HQ0a2xRQ4Og",
+      "https://www.youtube.com/embed/0Xfvk028Kv0",
+      "https://www.youtube.com/embed/NR7dG_m3MsI",
+      "https://www.youtube.com/embed/9lXuZHkOoH8",
+      "https://www.youtube.com/embed/HuYnfcgiERg",
+      "https://www.youtube.com/embed/ARnBgW5XgSo",
+      "https://www.youtube.com/embed/bT8FEOJEFcI",
+      "https://www.youtube.com/embed/-xYZM04JxnQ",
+      "https://www.youtube.com/embed/PxJ2LimcG9A",
+      "https://www.youtube.com/embed/uHBtpqbOKXk",
+      "https://www.youtube.com/embed/qiMaOmDtaYI",
+      "https://www.youtube.com/embed/04F4xlWSFh0",
+      "https://www.youtube.com/embed/qc98u-eGzlc",
+      "https://www.youtube.com/embed/09LTT0xwdfw",
+      "https://www.youtube.com/embed/j47OMBfl-3A",
+      "https://www.youtube.com/embed/QqB4YPcacdo"
+    ];
+
+    const pop = [
+      "https://www.youtube.com/embed/1j_XvebOg4c",
+      "https://www.youtube.com/embed/PMivT7MJ41M",
+      "https://www.youtube.com/embed/PT2_F-1esPk",
+      "https://www.youtube.com/embed/qrO4YZeyl0I",
+      "https://www.youtube.com/embed/hHUbLv4ThOo",
+      "https://www.youtube.com/embed/EPo5wWmKEaI",
+      "https://www.youtube.com/embed/QGJuMBdaqIw",
+      "https://www.youtube.com/embed/4NRXx6U8ABQ",
+      "https://www.youtube.com/embed/E07s5ZYygMg",
+      "https://www.youtube.com/embed/aHhYv90XdqE",
+      "https://www.youtube.com/embed/AqAJLh9wuZ0",
+      "https://www.youtube.com/embed/bn_p95HbHoQ",
+      "https://www.youtube.com/embed/e-ORhEE9VVg",
+      "https://www.youtube.com/embed/sEhy-RXkNo0",
+      "https://www.youtube.com/embed/CvBfHwUxHIk",
+      "https://www.youtube.com/embed/SR6iYWJxHqs",
+      "https://www.youtube.com/embed/34Na4j8AVgA",
+      "https://www.youtube.com/embed/TFrMDGfW_Sg",
+      "https://www.youtube.com/embed/C_3d6GntKbk",
+      "https://www.youtube.com/embed/XXYlFuWEuKI",
+      "https://www.youtube.com/embed/1oMgxa32A7g"
+    ];
+
+    const raggae = [
+      "https://www.youtube.com/embed/oFRbZJXjWIA",
+      "https://www.youtube.com/embed/n4SO7z010JE",
+      "https://www.youtube.com/embed/UubfH-1S43k",
+      "https://www.youtube.com/embed/MrHxhQPOO2c",
+      "https://www.youtube.com/embed/cOJsK8qbAaA",
+      "https://www.youtube.com/embed/1jfoScCnjRY",
+      "https://www.youtube.com/embed/7Znh0OM9jiA",
+      "https://www.youtube.com/embed/HGIkImLf11o",
+      "https://www.youtube.com/embed/qsYzKtnvHfs",
+      "https://www.youtube.com/embed/K6oYyG0KcvQ",
+      "https://www.youtube.com/embed/uc2UEfWjvo8",
+      "https://www.youtube.com/embed/hozj4wzFpqI",
+      "https://www.youtube.com/embed/g5sOdcK2hp4",
+      "https://www.youtube.com/embed/JZHTg26q1Js",
+      "https://www.youtube.com/embed/vdB-8eLEW8g",
+      "https://www.youtube.com/embed/TOT322nAt2A",
+      "https://www.youtube.com/embed/PrmYhWsE1d8",
+      "https://www.youtube.com/embed/U79o7qwul48",
+      "https://www.youtube.com/embed/NeVRaxHtwuk"
+    ];
+
+    const rock = [
+      "https://www.youtube.com/embed/kivUsDGWojU",
+      "https://www.youtube.com/embed/iWz9H3MPgqI",
+      "https://www.youtube.com/embed/NDjtguZG6iw",
+      "https://www.youtube.com/embed/5FrhtahQiRc",
+      "https://www.youtube.com/embed/3sdT_5J4Abc",
+      "https://www.youtube.com/embed/rU_vm0lbpsY",
+      "https://www.youtube.com/embed/SRXH9AbT280",
+      "https://www.youtube.com/embed/iKBCVZqqooY",
+      "https://www.youtube.com/embed/7NK_JOkuSVY",
+      "https://www.youtube.com/embed/fpUpVznI4Yc",
+      "https://www.youtube.com/embed/ehDZd6kFHUE",
+      "https://www.youtube.com/embed/aP-oFkZknS4",
+      "https://www.youtube.com/embed/ckcZhbmhgmM",
+      "https://www.youtube.com/embed/GgyQufB1Yic",
+      "https://www.youtube.com/embed/ndEQ1hnYj0Y",
+      "https://www.youtube.com/embed/69Wqhhun5_o",
+      "https://www.youtube.com/embed/9I9c20LHmzY",
+      "https://www.youtube.com/embed/W0DM5lcj6mw",
+      "https://www.youtube.com/embed/qQW4Aegqvj8"
+    ];
+
+    // Fonction pour afficher 10 liens aléatoires du genre détecté
+    function showPlaylist(genre) {
+      const genreKey = genre.trim().toLowerCase();
+      const genreMap = {
+        blues, classique, country, disco, hiphop, jazz, metal, pop, raggae, rock
+      };
+      const links = genreMap[genreKey];
+      const resultDiv = document.getElementById('result');
+      if (!links) {
+        resultDiv.innerHTML = `Aucune playlist trouvée pour le genre "${genre}".`;
+        return;
+      }
+      // Mélange et sélectionne 10 liens
+      const shuffled = links.slice().sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 10);
+      // Affiche les vidéos
+      resultDiv.innerHTML = selected.map(
+        url => `<iframe width="300" height="170" src="${url}" frameborder="0" allowfullscreen style="margin:8px;"></iframe>`
+      ).join('');
+    }
+
+    // Handler du formulaire pour un seul fichier
+    const form = document.getElementById('audio-form');
+    const resultDiv = document.getElementById('result');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fileInput = document.getElementById('audio-file');
+      if (!fileInput.files.length) {
+        resultDiv.textContent = "Veuillez sélectionner un fichier audio.";
+        return;
+      }
+      const formData = new FormData();
+      formData.append('audio', fileInput.files[0]);
+      resultDiv.textContent = "Analyse en cours...";
+      const response = await fetch('http://localhost:8000/analyze', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+      if (data.result) {
+        showPlaylist(data.result);
+      } else {
+        resultDiv.textContent = "Erreur lors de l'analyse.";
+      }
+    });
+
+    // Handler du formulaire pour plusieurs fichiers (affiche juste le genre détecté)
+    const multiForm = document.getElementById('audios-form');
+    const multiInput = document.getElementById('audio-files');
+    const multiResultDiv = document.getElementById('results-multi');
+
+    multiForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!multiInput.files.length) {
+        multiResultDiv.textContent = "Veuillez sélectionner des fichiers audio.";
+        return;
+      }
+      if (multiInput.files.length > 20) {
+        multiResultDiv.textContent = "Veuillez sélectionner au maximum 20 fichiers.";
+        return;
+      }
+      multiResultDiv.textContent = "Analyse en cours...";
+      // Regroupe les fichiers par genre
+      const genresMap = {};
+      for (const file of multiInput.files) {
+        const formData = new FormData();
+        formData.append('audio', file);
+        try {
+          const response = await fetch('http://localhost:8000/analyze', {
+            method: 'POST',
+            body: formData
+          });
+          const data = await response.json();
+          const genre = data.result ? data.result.trim() : "Erreur";
+          if (!genresMap[genre]) {
+            genresMap[genre] = [];
+          }
+          genresMap[genre].push(file.name);
+        } catch (err) {
+          if (!genresMap["Erreur"]) {
+            genresMap["Erreur"] = [];
+          }
+          genresMap["Erreur"].push(file.name);
+        }
+      }
+      // Affiche les résultats regroupés par genre
+      let html = '';
+      for (const [genre, files] of Object.entries(genresMap)) {
+        html += `<div style="margin-bottom:1em;"><b>${genre}</b> :<br>${files.map(f => `<span style="margin-right:8px">${f}</span>`).join('')}</div>`;
+      }
+      multiResultDiv.innerHTML = html || "Aucun genre détecté.";
+    });
+
+    // Permet de soumettre le formulaire quand on sélectionne des fichiers
+    document.getElementById('audio-file').addEventListener('change', () => form.requestSubmit());
+    document.getElementById('audio-files').addEventListener('change', () => multiForm.requestSubmit());
+  </script>
+</Layout>

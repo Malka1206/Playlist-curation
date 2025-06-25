@@ -29,9 +29,8 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_nawres = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\genres"
-chemin_malek="C:\\Users\\Administrateur\\Documents\\projet Artishow\\playlist-curation\\Dataset"
-data,labels=charger_donnees(chemin_malek)
+chemin_base = "C:\\Users\\user\\Desktop\\proj104\\genres"
+data,labels=charger_donnees(chemin_base)
 
 # Transformer les geres en numéros lisible par le SVM
 label_encoder = LabelEncoder()
@@ -56,7 +55,7 @@ X_val = scaler.transform(X_val)
 X_test = scaler.transform(X_test)
  
 XGB = XGBClassifier(
-    objective='multi:softprob',      
+    objective='multi:softmax',      
     num_class=10,          
     eval_metric='mlogloss',
     use_label_encoder=False,
@@ -95,10 +94,10 @@ auc = roc_auc_score(y_test_bin, y_score, average='macro', multi_class='ovr')
 print("Test AUC (macro, OvR):", auc)"""
 
 # Sauvegarder le modèle XGBoost
-joblib.dump(XGB, "xgb_multi.pkl")
+joblib.dump(XGB, "xgb_model.pkl")
 
 # Sauvegarder le scaler
-joblib.dump(scaler, "scaler_multi.pkl")
+joblib.dump(scaler, "scaler.pkl")
 
 # Sauvegarder le label encoder
-joblib.dump(label_encoder, "label_encoder_multi.pkl")
+joblib.dump(label_encoder, "label_encoder.pkl")
