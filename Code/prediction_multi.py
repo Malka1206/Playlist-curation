@@ -1,7 +1,6 @@
 import joblib
 import numpy as np
 from Création_vecteur import extraction_features
-import time
 
 # Charger le modèle, le scaler et le label encoder
 model = joblib.load("xgb_model.pkl")
