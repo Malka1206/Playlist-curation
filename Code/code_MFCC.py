@@ -5,26 +5,6 @@ import librosa.display
 from scipy.fftpack import dct
 import librosa
 
-def signal_sinusoidal(frequence=440, duree=1.0, echantillon=10000):
-    t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
-    signal = np.sin(2 * np.pi * frequence * t)
-    return signal
-
-def Somme_de_sinusoide(frequences=[440, 880], duree=1.0, echantillon=16000):
-    t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
-    signal = sum(np.sin(2 * np.pi * f * t) for f in frequences)
-    return signal
-
-def signal_triangulaire(frequence=440, duree=1.0, echantillon=16000):
-    t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
-    signal = sawtooth(2 * np.pi * frequence * t, width=0.5)  
-    return signal
-
-def bruit_blanc(duree=1.0, echantillon=16000):
-    t = np.linspace(0, duree, int(echantillon * duree), endpoint=False)
-    signal = np.random.normal(0, 1, len(t))
-    return signal
-
 
 def charger_audio(chemin_fichier, sr=16000): #sr : fréq d'échantillonnage
     signal, Fs = librosa.load(chemin_fichier, sr=sr)
