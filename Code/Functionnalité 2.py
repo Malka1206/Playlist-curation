@@ -1,4 +1,4 @@
-import prediction_multi as pred
+import prediction_multi_cropping as pred
 import os
 
 def analyze_musics(musics):
