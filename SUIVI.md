@@ -71,10 +71,12 @@ Documentation : initialisation kmean.
 
 22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
 
-23 juin Naoures : séparation des codes d'entrainement et de prédiction utilisant le modèle XGB et tester sur plusieurs chansons - constatation de quelques erreurs de prédiction - implémenter le code d'entrainement et de prédiction qui retourne les probabilités d'appartenance aux différents genres pour voir les genres qui se ressemblent - implémenter un code qui permet de renvoyer les genres dominants d'une chanson (ceux à probabilité de plus de 30% et même un peu moins si assez proche de la plus grande probabilité)
+23 juin Naoures : séparation des codes d'entrainement et de prédiction utilisant le modèle XGB et tester sur plusieurs chansons
 23 juin Toute l'équipe : Liste des musiques de recommendations prête. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
 23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
 23 juin Aziz : Le site permet la reccommendation de playlist grâce à un fichier déposé par l'utilisateur.
 23 juin Malek: Création de la fonctionnalité 2
 
 24 juin Malek: code Recherche deezer+ code triage en playlist + debuggage
+24 juin Naoures : constatation de quelques erreurs de prédiction - implémenter le code d'entrainement et de prédiction qui retourne les probabilités d'appartenance aux différents genres pour voir les genres qui se ressemblent - implémenter un code qui permet de renvoyer les genres dominants d'une chanson (ceux à probabilité de plus de 30% et même un peu moins si assez proche de la plus grande probabilité) + recherche de bases de données de fichiers audio avec plus de genres ou sous genres représentées (pas une tâche facile --> que des bases non exploitables ou payantes) et de fichiers audio classés selon le mood de l'utilisateur - essayer de relier mood, genre et météo (classification trop biaisée)
+24 juin Toute l'équipe : réunion avec les encadrants
