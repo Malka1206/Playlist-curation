@@ -37,7 +37,7 @@ def crop_audio(input_file, output_file, start_seconds, duration_seconds):
     return output_file
 
 # Exemple d'utilisation
-chemin_audio = "C:\\Users\\MSI\\Downloads\\classique.wav"
+chemin_audio = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\test_cropping\\country.wav"
 # Charger l'audio pour obtenir sa durée totale
 y, sr = librosa.load(chemin_audio, sr=None)
 total_duration = librosa.get_duration(y=y, sr=sr)
