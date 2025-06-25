@@ -61,10 +61,17 @@ Documentation : initialisation kmean.
 
 14 juin Aziz : Test d'un classificateur XGB (accuracy 6.2) et decision tree (5.9), recherche d'autres bases de données (test et entraînement)
 
+02 juin - 09 juin Naoures : recherche d'une meilleure base (plus riche) et tests sur les modèles codés
+
+09 juin - 15 juin Toute l'équipe : préparer les éléments à mettre dans le poster qui décrit le projet en y mettant les différentes étapes qui aboutissent à notre produit final (site web)
+
+15 juin - 17 juin Naoures : synthèse des éléments et finalisation du design du poster
+
 20 juin - 22 juin Aziz : Le problème python/typescipt est enfin résolu, après avoir essayé beaucoup de types de serveurs. La librairie python fastAPI permet de lancer un serveur qui s'occupe du traitement du fichier audio envoyé par l'utilisateur.
 
 22 juin Aziz : création de la liste des liens de musiques qui va servir à la génération de playlists
 
+23 juin Naoures : séparation des codes d'entrainement et de prédiction utilisant le modèle XGB et tester sur plusieurs chansons - constatation de quelques erreurs de prédiction - implémenter le code d'entrainement et de prédiction qui retourne les probabilités d'appartenance aux différents genres pour voir les genres qui se ressemblent - implémenter un code qui permet de renvoyer les genres dominants d'une chanson (ceux à probabilité de plus de 30% et même un peu moins si assez proche de la plus grande probabilité)
 23 juin Toute l'équipe : Liste des musiques de recommendations prête. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
 23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
 23 juin Aziz : Le site permet la reccommendation de playlist grâce à un fichier déposé par l'utilisateur.
