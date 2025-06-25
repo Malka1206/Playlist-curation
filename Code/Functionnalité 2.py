@@ -4,7 +4,8 @@ import os
 def analyze_musics(musics):
     L=[]
     for i in musics:
-        L.append(pred.predire_genres_tries(i))
+        L.append(pred.predire_genre(i))
+        print(L)
     playlists={}
     for i in range (len(L)):
         for x in L[i]:
@@ -21,7 +22,7 @@ def tolist_music(path):
         chemin_musics.append(chemin_fichier)
     return chemin_musics
 
-"""basepath= "C:\\Users\\Administrateur\\Downloads\\musics_actuel"
+basepath= "C:\\Users\\Administrateur\\Downloads\\musics_actuel"
 musics=tolist_music(basepath)
 playlists=analyze_musics(musics)
 
@@ -31,4 +32,4 @@ for genre, tracks in playlists.items():
     print(f"\n Genre: {genre}")
     for track in tracks:
         rel_path = os.path.relpath(track, prefix)
-        print(f"  - {track}")"""
+        print(f"  - {track}")
