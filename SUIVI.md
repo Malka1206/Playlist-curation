@@ -73,10 +73,13 @@ Documentation : initialisation kmean.
 
 23 juin Naoures : séparation des codes d'entrainement et de prédiction utilisant le modèle XGB et tester sur plusieurs chansons
 23 juin Toute l'équipe : Liste des musiques de recommendations prête. Tests de fonctions python sur le site et codage d'un algorithme de choix de chansons en fonction du genre du fichier rentré.
-23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation
+23 juin Molka : Structuration du plan de la présentation + début de la réalisation de la présentation.
 23 juin Aziz : Le site permet la reccommendation de playlist grâce à un fichier déposé par l'utilisateur.
 23 juin Malek: Création de la fonctionnalité 2
 
+24 juin Molka : réalisation des 10 pages web dédiés à chaque genre musical pour la génération des playlists par genre à l'aide d'API de Deezer + coder avec Typescript + style des pages avec du CSS.
 24 juin Malek: code Recherche deezer+ code triage en playlist + debuggage
 24 juin Naoures : constatation de quelques erreurs de prédiction - implémenter le code d'entrainement et de prédiction qui retourne les probabilités d'appartenance aux différents genres pour voir les genres qui se ressemblent - implémenter un code qui permet de renvoyer les genres dominants d'une chanson (ceux à probabilité de plus de 30% et même un peu moins si assez proche de la plus grande probabilité) + recherche de bases de données de fichiers audio avec plus de genres ou sous genres représentées (pas une tâche facile --> que des bases non exploitables ou payantes) et de fichiers audio classés selon le mood de l'utilisateur - essayer de relier mood, genre et météo (classification trop biaisée)
 24 juin Toute l'équipe : réunion avec les encadrants, discussion de notre avancée sur le projet, leur montrer le site et ses deux fonctionnalités, temps d'attente long pour la fonctionnalité 2 --> conseil des encadrants : cropping des fichiers audio à 30s voire 10s pour réduire le temps de prédiction et de classification, validation de la base de chansons par les encadrants --> pas besoin d'en chercher une autre maintenant, les encadrants nous disent que nous pouvons nous contenter de ces deux fonctionnalités sans ajouter la classification selon le mood et la météo, ils nous proposent de permettre à l'utilisateur de chercher la chanson sur le site via une API Deezer, les encadrants nous guident sur quoi mettre sur la présentation que nous allons leur montrer jeudi pour présenter notre travail sur ce projet tout au long du semestre
+
+24 juin après-midi + 25 juin Molka : implémenter la fonction python qui permet de cropper un fichier audio et le tester sur différentes durées + en fonction de l'Accuracy et le durée mise pour la prédiction, choix de la durée des fichiers audios qu'on travailler avec pour réduire au maximum le temps d'attente en gardant une bonne performance.
