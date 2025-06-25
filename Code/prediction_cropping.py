@@ -6,9 +6,9 @@ import librosa
 import time
 
 # Charger le modèle, le scaler et le label encoder
-model = joblib.load("xgb_multi.pkl")
-scaler = joblib.load("scaler_multi.pkl")
-label_encoder = joblib.load("label_encoder_multi.pkl")
+model = joblib.load("xgb_model.pkl")
+scaler = joblib.load("scaler.pkl")
+label_encoder = joblib.load("label_encoder.pkl")
 
 def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)

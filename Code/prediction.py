@@ -26,6 +26,6 @@ def predire_genre(fichier_audio):
     return genre[0]
 
 # Exemple d'utilisation
-chemin_audio = "C:\\Users\\MSI\\Downloads\\classique.wav"
+chemin_audio = "C:\\Users\\Administrateur\\Downloads\\musics_actuel\\Eminem - Houdini (Lyrics).wav"
 genre_pred = predire_genre(chemin_audio)
 print(f"Le genre prédit est : {genre_pred}")
