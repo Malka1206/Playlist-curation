@@ -1,0 +1,130 @@
+---
+// filepath: c:\Users\user\p104site\site\src\pages\Deezer.astro
+import Layout from '../layouts/Layout.astro';
+
+// Fonction Astro côté serveur pour récupérer le premier résultat Deezer
+async function getFirstResult(query) {
+  if (!query) return null;
+  // Utilise un proxy car l'API Deezer ne supporte pas le CORS côté client
+  const resp = await fetch(`https://api.deezer.com/search?q=${encodeURIComponent(query)}`);
+  const data = await resp.json();
+  return data.data && data.data.length > 0 ? data.data[0] : null;
+}
+
+// Récupère le paramètre de recherche si présent dans l'URL
+const { search } = Astro.request.url ? new URL(Astro.request.url) : { search: "" };
+const params = new URLSearchParams(search);
+const query = params.get("q") || "";
+const firstResult = query ? await getFirstResult(query) : null;
+---
+
+<Layout>
+  <h2 style="text-align:center;">Recherche Deezer</h2>
+  <div class="container">
+    <form id="deezer-form" action="/Deezer" method="get" style="display:flex;gap:1rem;justify-content:center;margin-bottom:2rem;">
+      <input
+        type="text"
+        id="deezer-query"
+        name="q"
+        value={query}
+        placeholder="Entrez le nom d'une musique"
+        style="padding:0.5rem 1rem;border-radius:6px;border:1px solid #ccc;width:250px;"
+        required
+      />
+      <button type="submit" class="dz-btn">Recherche</button>
+    </form>
+    <div id="deezer-result">
+      {firstResult ? (
+        <div style="display:flex;align-items:center;gap:1.5rem;">
+          <img src={firstResult.album.cover_medium} alt="cover" style="border-radius:8px;width:100px;height:100px;box-shadow:0 2px 8px #0002;" />
+          <div>
+            <h3 style="margin:0 0 0.5rem 0;">{firstResult.title}</h3>
+            <p style="margin:0 0 0.5rem 0;">{firstResult.artist.name} — <i>{firstResult.album.title}</i></p>
+            <audio controls src={firstResult.preview} style="width:220px;margin-top:0.5rem;"></audio>
+            <div style="margin-top:0.5rem;">
+              <a href={firstResult.link} target="_blank" style="color:#2b2d42;text-decoration:underline;">Voir sur Deezer</a>
+            </div>
+          </div>
+        </div>
+      ) : (query ? <span style="color:red;">Aucun résultat trouvé.</span> : null)}
+    </div>
+    {firstResult && firstResult.preview && (
+      <>
+        <button
+          id="analyze-btn"
+          type="button"
+          class="dz-btn"
+          style="margin-top:1rem;"
+          data-preview={firstResult.preview}
+        >
+          Analyser le genre de l'extrait
+        </button>
+        <div id="deezer-genre-result" style="margin-top:0.7rem;"></div>
+      </>
+    )}
+  </div>
+
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: rgba(255,255,255,0.40);
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dz-btn {
+      background: #2b2d42;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dz-btn:hover {
+      background: #41506b;
+    }
+  </style>
+
+  <script type="module">
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const genreDiv = document.getElementById('deezer-genre-result');
+    if (analyzeBtn) {
+      analyzeBtn.addEventListener('click', async () => {
+        genreDiv.textContent = "Analyse en cours...";
+        const url = analyzeBtn.getAttribute('data-preview');
+        try {
+          const resp = await fetch('http://localhost:8000/analyze-preview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(url)
+          });
+          const data = await resp.json();
+          if (data.genre) {
+            // Affiche un bouton qui redirige vers la page du genre
+            genreDiv.innerHTML = `
+              <button
+                class="dz-btn"
+                style="margin-top:1rem;"
+                onclick="window.location.href='http://localhost:4321/${data.genre.toLowerCase()}'"
+              >
+                ${data.genre}
+              </button>
+            `;
+          } else {
+            genreDiv.innerHTML = "<span style='color:red'>Aucun genre détecté.</span>";
+          }
+        } catch (err) {
+          genreDiv.innerHTML = "<span style='color:red'>Erreur lors de l'analyse.</span>";
+        }
+      });
+    }
+  </script>
+</Layout>

@@ -1,0 +1,114 @@
+---
+// filepath: c:\Users\user\p104site\site\src\pages\AnalyseV2.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <h2 style="text-align:center;">Analyse V2 : Analyse de plusieurs fichiers audio</h2>
+  <div class="container">
+    <div class="dropzone-col">
+      <form id="audio-v2-form">
+        <input 
+          type="file" 
+          id="audio-v2-files" 
+          name="audios" 
+          accept="audio/*"
+          multiple
+          style="display:none"
+        />
+        <button type="button" class="dz-btn" onclick="document.getElementById('audio-v2-files').click()">Choisir 1 à 7 fichiers</button>
+        <button type="submit" class="dz-btn" style="margin-top:0.5rem;">Analyse V2</button>
+        <label for="audio-v2-files" class="dz-label">
+          Déposez 1 à 7 fichiers audio ou cliquez pour parcourir
+        </label>
+      </form>
+      <div id="result-v2"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    const v2Form = document.getElementById('audio-v2-form');
+    const v2Input = document.getElementById('audio-v2-files');
+    const v2Result = document.getElementById('result-v2');
+
+    v2Form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!v2Input.files.length || v2Input.files.length > 7) {
+        v2Result.textContent = "Veuillez sélectionner entre 1 et 7 fichiers audio.";
+        return;
+      }
+      v2Result.textContent = "Analyse en cours...";
+      const formData = new FormData();
+      for (const file of v2Input.files) {
+        formData.append('audios', file);
+      }
+      try {
+        const response = await fetch('http://localhost:8000/analyze-v2', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        let html = '';
+        for (const [genre, files] of Object.entries(data)) {
+          html += `<div style="margin-bottom:1em;"><b>${genre}</b> :<br>${files.map(f => `<span style="margin-right:8px">${f}</span>`).join('')}</div>`;
+        }
+        v2Result.innerHTML = html || "Aucun genre détecté.";
+      } catch (err) {
+        v2Result.textContent = "Erreur lors de l'analyse.";
+      }
+    });
+
+    v2Input.addEventListener('change', () => v2Form.requestSubmit());
+  </script>
+
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: rgba(255,255,255,0.40);
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dropzone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 320px;
+      min-width: 220px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 1.2rem 1rem 1.5rem 1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      margin: 0 auto;
+    }
+    .dz-btn {
+      margin-bottom: 0.7rem;
+      width: 90%;
+      background: #2b2d42;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dz-btn:hover {
+      background: #41506b;
+    }
+    .dz-label {
+      font-weight: 500;
+      color: #444;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+  </style>
+</Layout>
