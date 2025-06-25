@@ -37,13 +37,12 @@ def crop_audio(input_file, output_file, start_seconds, duration_seconds):
     return output_file
 
 chemin_audio = "C:\\Users\\MSI\\Downloads\\classique.wav"
+# Charger l'audio pour obtenir sa durée totale
+y, sr = librosa.load(chemin_audio, sr=None)
+total_duration = librosa.get_duration(y=y, sr=sr)
 
 # Exemple d'utilisation
-for duration_seconds in (10, 20, 30, 60):
-    # Charger l'audio pour obtenir sa durée totale
-    y, sr = librosa.load(chemin_audio, sr=None)
-    total_duration = librosa.get_duration(y=y, sr=sr)
-    
+for duration_seconds in (10, 20, 30, 60, total_duration):
     # Calculer le point de départ
     start_seconds = max(0, (total_duration - duration_seconds) / 2)
 
@@ -57,8 +56,6 @@ for duration_seconds in (10, 20, 30, 60):
     end_time = time.time()
     elapsed_time = end_time - start_time
 
+    print("La durée totale de la chanson es" + str(total_duration))
     print(f"Temps d'exécution pour {duration_seconds} secondes : {elapsed_time:.2f} secondes")
     print(f"Genre prédit pour {duration_seconds} secondes : {genre_pred}\n")
-
-print(f"Temps d'exécution pour {duration_seconds} secondes : {elapsed_time:.2f} secondes")
-print(f"Genre prédit pour {duration_seconds} secondes : {genre_pred}\n")
