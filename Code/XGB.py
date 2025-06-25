@@ -6,6 +6,8 @@ from xgboost import XGBClassifier
 import os
 from Création_vecteur import extraction_features
 import joblib
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
  
 def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)
@@ -29,7 +31,7 @@ def charger_donnees(base_path):
     return np.array(X), np.array(y)
 
 # Chemin vers ta base audio organisée par genre
-chemin_base = "C:\\Users\\Administrateur\\Documents\\projet Artishow\\playlist-curation\\Dataset"
+chemin_base = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\genres"
 data,labels=charger_donnees(chemin_base)
 
 # Transformer les geres en numéros lisible par le SVM
@@ -70,6 +72,13 @@ print("\nValidation Report:\n", classification_report(y_val, y_val_pred, target_
 
 # Prédictions sur les données de test
 y_test_pred = XGB.predict(X_test)
+
+# Matrice de confusion
+cm = confusion_matrix(y_test, y_test_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=label_encoder.classes_)
+disp.plot(xticks_rotation=45, cmap="Blues")
+plt.tight_layout()
+plt.show()
 
 # précision
 accuracy = accuracy_score(y_test, y_test_pred)
