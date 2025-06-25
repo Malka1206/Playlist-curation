@@ -4,6 +4,7 @@ from Création_vecteur import extraction_features
 from pydub import AudioSegment
 import time
 import librosa
+import os
 
 # Charger le modèle, le scaler et le label encoder
 model = joblib.load("xgb_multi.pkl")
@@ -17,7 +18,17 @@ def predire_genre(fichier_audio):
     y, sr = librosa.load(fichier_audio)
     total_duration = librosa.get_duration(y=y, sr=sr)
     start_seconds = max(0, (total_duration - 30) / 2)
-    chemin_audio_cropped = fichier_audio + "30s cropped.wav"
+
+    # Obtenir le dossier parent de fichier_audio
+    dossier_parent = os.path.dirname(os.path.dirname(fichier_audio))  # remonte d'un niveau
+    # Extraire le nom de base sans l'extension
+    nom_original = os.path.splitext(os.path.basename(fichier_audio))[0]
+
+    # Construire le nouveau nom de fichier
+    nom_fichier_cropped = nom_original + "_cropped.wav"
+
+    # Créer le chemin complet dans le dossier parent
+    chemin_audio_cropped = os.path.join(dossier_parent, nom_fichier_cropped)
     chemin_audio_cropped = crop_audio(fichier_audio , chemin_audio_cropped, start_seconds, 30)
     # Extraire les features
     features = extraire_features(chemin_audio_cropped)
