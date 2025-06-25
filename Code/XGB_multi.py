@@ -31,7 +31,7 @@ def charger_donnees(base_path):
 # Chemin vers ta base audio organisée par genre
 chemin_nawres = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\genres"
 chemin_malek="C:\\Users\\Administrateur\\Documents\\projet Artishow\\playlist-curation\\Dataset"
-data,labels=charger_donnees(chemin_malek)
+data,labels=charger_donnees(chemin_nawres)
 
 # Transformer les geres en numéros lisible par le SVM
 label_encoder = LabelEncoder()

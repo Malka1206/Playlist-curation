@@ -2,6 +2,8 @@ import joblib
 import numpy as np
 from Création_vecteur import extraction_features
 from pydub import AudioSegment
+import time
+import librosa
 
 # Charger le modèle, le scaler et le label encoder
 model = joblib.load("xgb_multi.pkl")
@@ -21,19 +23,10 @@ def predire_genre(fichier_audio):
     probs = model.predict_proba(features_scaled)[0]
     genre_probs = dict(zip(label_encoder.classes_, probs))
 
-    # Filtrer les genres avec proba > 0.3
-    genres_filtres = {genre: p for genre, p in genre_probs.items() if p > 0.3}
+    # Trier les genres par probabilité décroissante
+    genre_probs_tries = dict(sorted(genre_probs.items(), key=lambda item: item[1], reverse=True))
 
-    # Si 0 ou 1 genre, relâcher le seuil
-    if len(genres_filtres) <= 1:
-        proba_max = max(probs)
-        seuil = proba_max - 0.1
-        genres_filtres = {genre: p for genre, p in genre_probs.items() if p >= seuil}
-
-    # Trier par probabilité décroissante
-    genres_tries = sorted(genres_filtres.items(), key=lambda x: x[1], reverse=True)
-
-    return [str(genre) for genre, _ in genres_tries]
+    return genre_probs_tries
 
 def crop_audio(input_file, output_file, start_seconds, duration_seconds):
     audio = AudioSegment.from_file(input_file)
@@ -44,9 +37,26 @@ def crop_audio(input_file, output_file, start_seconds, duration_seconds):
     return output_file
 
 # Exemple d'utilisation
-duration_seconds = 10
-start_seconds = 10
-chemin_audio = "C:\\Users\\Administrateur\\Downloads\\musics_actuel\\Eminem - Houdini (Lyrics).wav"
-chemin_audio = crop_audio(chemin_audio,chemin_audio+"cropped"+str(duration_seconds),start_seconds,duration_seconds)
-genre_pred = predire_genre(chemin_audio)
-print(f"Le genre prédit est : {genre_pred}")
+chemin_audio = "C:\\Users\\MSI\\Downloads\\classique.wav"
+# Charger l'audio pour obtenir sa durée totale
+y, sr = librosa.load(chemin_audio, sr=None)
+total_duration = librosa.get_duration(y=y, sr=sr)
+
+# Exemple d'utilisation
+for duration_seconds in (5, 10, 20, 30, 60,int(total_duration)):
+    # Calculer le point de départ
+    start_seconds = max(0, (total_duration - duration_seconds) / 2)
+
+    # Découper l'audio
+    chemin_audio_cropped = chemin_audio + "_cropped_" + str(duration_seconds) + ".wav"
+    chemin_audio_cropped = crop_audio(chemin_audio, chemin_audio_cropped, start_seconds, duration_seconds)
+
+    # Mesure du temps de prédiction
+    start_time = time.time()
+    genre_pred = predire_genre(chemin_audio_cropped)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    print("La durée totale de la chanson est :" + str(total_duration))
+    print(f"Temps d'exécution pour {duration_seconds} secondes : {elapsed_time:.2f} secondes")
+    print(f"Genre prédit pour {duration_seconds} secondes : {genre_pred}\n")
