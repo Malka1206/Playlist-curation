@@ -25,7 +25,7 @@ def predire_genre(fichier_audio):
     genre = label_encoder.inverse_transform(prediction)
     return genre[0]
 
-"""# Exemple d'utilisation
-chemin_audio = "C:\\Users\\Administrateur\\Downloads\\Eminem - Houdini (Lyrics).wav"
+# Exemple d'utilisation
+chemin_audio = "C:\\Users\\MSI\\Downloads\\classique.wav"
 genre_pred = predire_genre(chemin_audio)
-print(f"Le genre prédit est : {genre_pred}")"""
+print(f"Le genre prédit est : {genre_pred}")
