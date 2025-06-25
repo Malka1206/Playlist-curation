@@ -14,13 +14,8 @@ def extraire_features(fichier_audio):
     return extraction_features(fichier_audio)
 
 def predire_genre(fichier_audio):
-    y, sr = librosa.load(chemin_audio, sr=None)
-    total_duration = librosa.get_duration(y=y, sr=sr)
-    start_seconds = max(0, (total_duration - 30) / 2)
-    chemin_audio_cropped = chemin_audio + "_cropped_" + str(30) + ".wav"
-    chemin_audio_cropped = crop_audio(chemin_audio, chemin_audio_cropped, start_seconds, 30)
     # Extraire les features
-    features = extraire_features(chemin_audio_cropped)
+    features = extraire_features(fichier_audio)
     features = np.array(features).reshape(1, -1)
     features_scaled = scaler.transform(features)
 
@@ -40,3 +35,28 @@ def crop_audio(input_file, output_file, start_seconds, duration_seconds):
     cropped_audio = audio[start_time:end_time]
     cropped_audio.export(output_file, format="mp3")
     return output_file
+
+# Exemple d'utilisation
+chemin_audio = "C:\\Users\\MSI\\Desktop\\TELECOM\\Artishow\\playlist-curation\\test_cropping\\country.wav"
+# Charger l'audio pour obtenir sa durée totale
+y, sr = librosa.load(chemin_audio, sr=None)
+total_duration = librosa.get_duration(y=y, sr=sr)
+
+# Exemple d'utilisation
+for duration_seconds in (5, 10, 20, 30, 60,int(total_duration)):
+    # Calculer le point de départ
+    start_seconds = max(0, (total_duration - duration_seconds) / 2)
+
+    # Découper l'audio
+    chemin_audio_cropped = chemin_audio + "_cropped_" + str(duration_seconds) + ".wav"
+    chemin_audio_cropped = crop_audio(chemin_audio, chemin_audio_cropped, start_seconds, duration_seconds)
+
+    # Mesure du temps de prédiction
+    start_time = time.time()
+    genre_pred = predire_genre(chemin_audio_cropped)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    print("La durée totale de la chanson est :" + str(total_duration))
+    print(f"Temps d'exécution pour {duration_seconds} secondes : {elapsed_time:.2f} secondes")
+    print(f"Genre prédit pour {duration_seconds} secondes : {genre_pred}\n")
