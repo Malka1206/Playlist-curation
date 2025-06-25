@@ -1,0 +1,19 @@
+Caractéristiques :
+Caractéristiques rhythmiques : à partir du beat histogram
+-	Amplitudes relatives des pics : régularité du tempo (plus stable en pop/rock et plus variable en jazz)
+-	Periode du 1er et second pic (tempo dominant)
+-	Somme de tous les pics -> indique beat strengh (plus faible en classique, jazz, blues)
+-	…
+
+Caractéristiques timbrales (tonales) extraites des histogrammes repliés et déplié :
+La musique jazz ou classique a tendance à présenter une plus grande variation de hauteur (pitch) que la musique pop ou rock. En conséquence, les histogrammes de pitch de la pop ou du rock auront moins de pics, mais ceux-ci seront plus marqués que dans le jazz ou la musique classique.
+-	Amplitude du maximum pic
+-	Octave dominante
+-	Somme de l’histogramme : caractérise la force du pitch detection 
+-	…
+
+Caractéristiques les plus discriminantes pour XGBoost :
+XGBoost peut pondérer automatiquement les caractéristiques les plus discriminantes, comme :
+-	Amplitude du pic max de pitch : très discriminante pour pop/rock.
+-	Nombre et répartition des pics dans l’histogramme : différencie jazz/classique.
+-	Beat strength et régularité des pics : utile pour repérer les structures rythmiques plus régulières (rock) ou plus syncopées (jazz).
